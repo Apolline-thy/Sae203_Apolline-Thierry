@@ -10,41 +10,15 @@
   <body>
     <header id="header"></header>
 
-    <section id="content">
-      <!-- <div class="cards">
-        <div class="card card--lebon">
-          <img
-            class="card__image"
-            src="../server/images/bon_brute_truand.jpg"
-            alt="image film"
-          />
-        </div>
-        <div class="card card--interstellar">
-          <img
-            class="card__image"
-            src="../server/images/interstellar.jpg"
-            alt="image film"
-          />
-        </div>
-        <div class="card card--schindler">
-          <img
-            class="card__image"
-            src="../server/images/schindler.webp"
-            alt="image film"
-          />
-        </div>
-        <div class="card card--your-name">
-          <img
-            class="card__image"
-            src="../server/images/your_name.jpg"
-            alt="image film"
-          />
-        </div>
-      </div> -->
-    </section>
+    <section id="content"></section>
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
+
+      import {Movie} from "./component/Movie/script.js";
+      import {DataMovie} from "./data/dataMovie.js";
+      
+
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -59,8 +33,13 @@
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
+        C.getMovie();
       };
 
+    C.getMovie= async function(){
+     let data = await DataMovie.request();
+     V.renderMovie(data);
+     };
       // Vue (contient tout ce qui est relatif à l'affichage)
       window.V = {};
 
@@ -76,8 +55,13 @@
         header.innerHTML = NavBar.format(hAbout);
       };
 
+      V.renderMovie = function (data){
+        let content = document.querySelector("#content");
+        content.innerHTML = Movie.format(data);
+      }
       C.start(); // Démarre l'application
     </script>
   </body>
 </html>
+
 <script type="module"></script>

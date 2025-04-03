@@ -1,0 +1,29 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes de largeur égale */
+    grid-template-rows: repeat(2, auto);   
+    gap: 1rem; /* Espace entre les cartes */
+    justify-content: center;
+    padding: 2rem;
+}
+
+.card {
+border: 1px solid grey;
+border-radius: 5%;
+padding: 1rem;
+max-width: 300px;
+text-align: center;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card__img {
+    width: 100%; /* L'image occupe toute la largeur de son conteneur */
+    height: auto; /* L'image conserve ses proportions */
+    border-radius: 4px; /* Facultatif : arrondir les coins des images */
+}
+
+.card__title {
+    margin-top: 12px;
+    font-size: 1.5rem;
+    color: black;
+}
