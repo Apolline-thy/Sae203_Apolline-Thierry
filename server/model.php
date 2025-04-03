@@ -17,3 +17,16 @@ define("HOST", "localhost");
 define("DBNAME", "thierry18");
 define("DBLOGIN", "thierry18");
 define("DBPWD", "thierry18");
+
+function getAllMovies(){
+     // Connexion à la base de données
+     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+     // Requête SQL pour récupérer le menu avec des paramètres
+     $sql = "select id, name, image from Movie";
+     // Prépare la requête SQL
+     $stmt = $cnx->prepare($sql);
+     $stmt->execute();
+     // Récupère les résultats de la requête sous forme d'objets
+     $res = $stmt->fetchAll(PDO::FETCH_OBJ);
+     return $res; // Retourne les résultats
+}
