@@ -1,16 +1,22 @@
 let templateFile = await fetch("./component/Movie/template.html");
 let template = await templateFile.text();
 
+let templateFile2 = await fetch("./component/Movie/templateCard.html");
+let templateCards = await templateFile2.text();
+
 let Movie = {};
 
-Movie.format = function (movies) {
-    let html = "";
-    movies.forEach((movie) =>{
-        let movieHtml = template;
-        movieHtml =movieHtml.replace("{{titre}}", movie.name);
-        movieHtml =movieHtml.replace("{{image}}", movie.image);
-        html+=movieHtml;
-    } )
+Movie.format = function (obj) {
+    let html = template;
+    let cardsHTML ="";
+  for (let c of obj){ 
+   let card = templateCards;
+   card = card.replace ("{{name}}", c.name);
+   card = card.replace ("{{image}}", c.image);
+   cardsHTML += card;
+  }
+
+  html = html.replace("{{cards}}", cardsHTML);
    return html;
 };
 
