@@ -1,7 +1,7 @@
 <div class="addMovie">
     <h4 class="addMovie__title">Ajouter un film au catalogue</h4>
     
-    <form id="movieForm" class="addMovie__form">
+    <form id="MovieForm" class="addMovie__form">
         
         <input required type="text" name="title" placeholder="Titre du film">
         
@@ -29,7 +29,7 @@
         
         <input required type="number" name="ageRestriction" placeholder="Âge minimum" min="0" max="18">
         
-        <button type="submit">Ajouter le film</button>
+        <input onclick="{{handler}}" type="button" value="add" name="todo">
 
     </form>
 </div>
