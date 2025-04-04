@@ -33,17 +33,16 @@ function addMovieController(){
   $duration = $_REQUEST['duration'];
   $description = $_REQUEST['description'];
   $category = $_REQUEST['category'];
-  $image = $_REQUEST['image'];
   $trailer = $_REQUEST['trailer'];
   $min_age = $_REQUEST['min_age'];
 
   // Vérification que tous les champs obligatoires sont présents
-  if (empty($title) || empty($director) || empty($year) || empty($duration) || empty($description) || empty($category) || empty($image) || empty($trailer) || empty($min_age)) {
+  if (empty($title) || empty($director) || empty($year) || empty($duration) || empty($description) || empty($category) || empty($trailer) || empty($min_age)) {
     return "Tous les champs doivent être remplis.";
   }
 
   // Appel de la fonction pour ajouter le film à la base de données
-  $ok = addMovie($title, $director, $year, $duration, $description, $category, $image, $trailer, $min_age);
+  $ok = addMovie($title, $director, $year, $duration, $description, $category, $trailer, $min_age);
 
   // Vérification du succès de l'opération
   if ($ok != 0) {

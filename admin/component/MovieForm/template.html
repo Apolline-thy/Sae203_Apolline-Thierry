@@ -2,6 +2,7 @@
     <h4 class="addMovie__title">Ajouter un film au catalogue</h4>
     
     <form id="MovieForm" class="addMovie__form">
+ 
         
         <input required type="text" name="title" placeholder="Titre du film">
         
@@ -15,19 +16,18 @@
         
         <select required name="category">
             <option value="" disabled selected>Choisir une catégorie</option>
-            <option value="drame">Drame</option>
-            <option value="aventure">Aventure</option>
-            <option value="animation">Animation</option>
-            <option value="comédie">Comédie</option>
-            <option value="thriller">Thriller</option>
-            <option value="science-fiction">Science-fiction</option>
+            <option value="1">Drame</option>
+            <option value="2">Aventure</option>
+            <option value="3">Animation</option>
+            <option value="4">Comédie</option>
+            <option value="5">Thriller</option>
+            <option value="6">Science-fiction</option>
         </select>
         
-        <input required type="text" name="poster" placeholder="Nom du fichier de l'affiche (ex: film.jpg)">
         
         <input required type="url" name="trailer" placeholder="URL du trailer">
         
-        <input required type="number" name="ageRestriction" placeholder="Âge minimum" min="0" max="18">
+        <input required type="number" name="min_age" placeholder="Âge minimum" min="0" max="18">
         
         <input onclick="{{handler}}" type="button" value="add" name="todo">
 

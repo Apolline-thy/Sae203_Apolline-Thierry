@@ -40,7 +40,6 @@ function getAllMovies(){
  * @param int $du La durée du film en minutes.
  * @param string $s La description ou synopsis du film.
  * @param string $c La catégorie du film (par exemple, Drame, Aventure, etc.).
- * @param string $i Le nom du fichier image du film.
  * @param string $t L'URL du trailer du film.
  * @param int $a Les restrictions d'âge du film.
  * @return int Le nombre de lignes affectées par la requête d'insertion.
@@ -49,15 +48,15 @@ function getAllMovies(){
  * Si l'insertion a réussi, le nombre de lignes affectées sera 1.
  * Si l'insertion a échoué, le nombre de lignes affectées sera 0.
  */
-function addMovie($n, $d, $y, $du, $s, $c, $i, $t, $a){
+function addMovie($n, $d, $y, $du, $s, $c, $t, $a){
     // Connexion à la base de données
-    try {
+ 
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-        $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Requête SQL pour ajouter un film à la base de données
-        $sql = "INSERT INTO Movie (name, director, year, duration, description, id_category, image, trailer, min_age) 
-                VALUES (:name, :director, :year, :duration, :description, :id_category, :image, :trailer, :min_age)";
+        $sql = "INSERT INTO Movie (name, director, year, duration, description, id_category, trailer, min_age) 
+                VALUES (:name, :director, :year, :duration, :description, :id_category, :trailer, :min_age)";
         
         // Prépare la requête SQL
         $stmt = $cnx->prepare($sql);
@@ -69,7 +68,6 @@ function addMovie($n, $d, $y, $du, $s, $c, $i, $t, $a){
         $stmt->bindParam(':duration', $du);
         $stmt->bindParam(':description', $s);
         $stmt->bindParam(':id_category', $c);
-        $stmt->bindParam(':image', $i);
         $stmt->bindParam(':trailer', $t);
         $stmt->bindParam(':min_age', $a);
         
@@ -79,9 +77,9 @@ function addMovie($n, $d, $y, $du, $s, $c, $i, $t, $a){
         // Récupère le nombre de lignes affectées par la requête
         $res = $stmt->rowCount(); 
         return $res; // Retourne le nombre de lignes affectées
-    } catch (PDOException $e) {
-        // En cas d'erreur, retourne 0 et log l'erreur
-        error_log($e->getMessage());
-        return 0;
-    }
+    // } catch (PDOException $e) {
+    //     // En cas d'erreur, retourne 0 et log l'erreur
+    //     error_log($e->getMessage());
+    //     return 0;
+    // }
 }

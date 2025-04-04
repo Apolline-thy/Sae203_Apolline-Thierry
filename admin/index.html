@@ -17,14 +17,9 @@
 
       window.C = {};
           C.handlerAddMovie = async function(){
-            
-            // Sélectionne l'élément possédant la classe `.addMenu__form`
-            // il s'agit de l'élément <form> du composant NewMenuForm
             let form = document.querySelector('.addMovie__form');
             let fd = new FormData(form);
-            // Attend la réponse de la fonction `DataMenu.update(fd)`
             let res = await DataMovie.add(fd);
-            // Affiche le résultat de la mise à jour dans le journal
             V.renderLog(res);
            
         }
