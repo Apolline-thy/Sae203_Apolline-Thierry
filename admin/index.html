@@ -26,12 +26,13 @@
             let res = await DataMovie.add(fd);
             // Affiche le résultat de la mise à jour dans le journal
             V.renderLog(res);
+           
         }
 
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
-         V.renderMovieForm(C.handlerAddMovie);
+         V.renderMovieForm("C.handlerAddMovie()");
       };
 
       window.V = {};
