@@ -65,7 +65,7 @@ function addMovie($n, $d, $i, $y, $l, $s, $c, $t, $a){
         // Lie les paramètres aux valeurs
         $stmt->bindParam(':name', $n);
         $stmt->bindParam(':director', $d);
-        $stmt->bindParam(':image', $y);
+        $stmt->bindParam(':image', $i);
         $stmt->bindParam(':year', $y);
         $stmt->bindParam(':length', $l);
         $stmt->bindParam(':description', $s);
