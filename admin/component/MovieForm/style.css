@@ -17,6 +17,7 @@
     border-width: 1px;
     border-color: rgb(255, 255, 255);
     padding:1.5rem;
+    gap: 1rem;
 }
 
 .addMovie__form select {
@@ -37,6 +38,20 @@
 .addMovie__form input[type=button] {
     background-color: rgb(113, 91, 69);
     color:#fff;
-    
    
+}
+
+.addMovie__form input[type=button]:hover {
+    background-color: rgb(92, 81, 70);
+    color:#fff;
+   
+}
+
+.addMovie__button{
+  align-items: center;
+  text-align: center;
+  width: 20rem;
+  border-radius: 2rem;
+  border: none;  
+    
 }
