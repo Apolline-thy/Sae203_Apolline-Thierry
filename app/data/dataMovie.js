@@ -20,4 +20,13 @@ DataMovie.request = async function () {
   return data;
 };
 
-export { DataMovie };
+
+
+DataMovie.requestMovieDetails = async function (id) {
+   let response = await fetch(HOST_URL + "/server/script.php?todo=readmovies&id=" + id);
+    let data = await response.json();
+    return data;
+  
+};
+
+export {DataMovie};
