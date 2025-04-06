@@ -85,3 +85,21 @@ function addMovie($n, $d, $i, $y, $l, $s, $c, $t, $a){
     //     return 0;
     // }
 }
+
+function readMovieDetail($id) {
+    // Connexion à la base de données
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+
+    // Requête SQL pour récupérer les infos détaillées d’un film
+    $sql = "SELECT id, name, image, director, year, description, trailer, min_age, category 
+            FROM Movie 
+            WHERE id = :id";
+
+    $stmt = $cnx->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $movie = $stmt->fetch(PDO::FETCH_ASSOC); // tableau associatif
+
+    return $movie;
+}

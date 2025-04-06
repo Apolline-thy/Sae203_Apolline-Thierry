@@ -52,3 +52,21 @@ function addMovieController(){
     return "Une erreur s'est produite lors de l'ajout du film.";
   }
 }
+
+function readMovieDetailController() {
+  if (!isset($_REQUEST['id'])) {
+    return ["error" => "ID du film manquant"];
+  }
+
+  $id = intval($_REQUEST['id']);
+
+  // Appel de la fonction du modèle qui récupère les infos du film
+  $movie = readMovie($id);
+
+  if (!$movie) {
+    return ["error" => "Film non trouvé"];
+  }
+
+  return $movie;
+}
+
