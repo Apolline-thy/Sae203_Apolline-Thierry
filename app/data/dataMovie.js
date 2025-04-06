@@ -21,12 +21,12 @@ DataMovie.request = async function () {
 };
 
 
-
-DataMovie.requestMovieDetails = async function (id) {
-   let response = await fetch(HOST_URL + "/server/script.php?todo=readmovies&id=" + id);
+DataMovie.requestMovieDetail = async function (id) {
+    let response = await fetch(`${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`);
     let data = await response.json();
+    console.log(data);  // Ajoute un log pour voir ce que retourne l'API
     return data;
-  
 };
 
-export {DataMovie};
+// Exporte DataMovie
+export { DataMovie };

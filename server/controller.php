@@ -54,19 +54,12 @@ function addMovieController(){
 }
 
 function readMovieDetailController() {
-  if (!isset($_REQUEST['id'])) {
-    return ["error" => "ID du film manquant"];
-  }
 
   $id = intval($_REQUEST['id']);
 
-  // Appel de la fonction du modèle qui récupère les infos du film
-  $movie = readMovie($id);
+  $movies = readMovieDetail($id);
 
-  if (!$movie) {
-    return ["error" => "Film non trouvé"];
-  }
-
-  return $movie;
+  return $movies;
 }
+
 

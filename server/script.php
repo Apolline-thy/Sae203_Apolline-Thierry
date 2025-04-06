@@ -62,7 +62,6 @@ if ( isset($_REQUEST['todo']) ){
 
       case 'readMovieDetail':
       $data = readMovieDetailController();
-      echo json_encode($data);
       break;
 
 

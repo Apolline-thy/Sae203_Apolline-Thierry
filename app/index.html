@@ -34,23 +34,24 @@
       };
 
       
- C.handlerDetail = async function (id) {
-   // Récupérer les détails du film en utilisant son ID
-  let res = await DataMovie.requestMovieDetails(id);
-
-  // Vérifier si des données ont été retournées
-  if (res && res.length > 0) {
-    // Récupérer le premier film (si tu as une liste)
-    let film = res[0];
-
-    // Sélectionner l'élément où tu veux afficher les détails du film
-    let content = document.querySelector("#content");
-
-    // Insérer le HTML du film dans la section content
-    content.innerHTML = MovieDetail.format(film);
-}
- };
-
+C.handlerDetail = async function (id) {
+    // Vérification de l'ID passé
+    console.log(`ID du film sélectionné : ${id}`);
+    
+    // Appel pour récupérer les détails du film avec l'ID
+    let res = await DataMovie.requestMovieDetail(id);
+    
+    // Vérification si on a des résultats
+    if (res && res.length > 0) {
+        let film = res[0];
+        
+        // Manipulation des détails du film dans la page
+        let content = document.querySelector("#content");
+        content.innerHTML = MovieDetail.format(film);
+    } else {
+        console.log("Film non trouvé");
+    }
+};
 
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
@@ -79,10 +80,10 @@
       V.renderMovie = function (data){
         let content = document.querySelector("#content");
         content.innerHTML = Movie.format(data);
-      }
+      };
+
       C.start(); // Démarre l'application
     </script>
   </body>
 </html>
 
-<script type="module"></script>

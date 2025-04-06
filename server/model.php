@@ -87,11 +87,9 @@ function addMovie($n, $d, $i, $y, $l, $s, $c, $t, $a){
 }
 
 function readMovieDetail($id) {
-    // Connexion à la base de données
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
 
-    // Requête SQL pour récupérer les infos détaillées d’un film
-    $sql = "SELECT id, name, image, director, year, description, trailer, min_age, category 
+    $sql = "SELECT id, name, image, director, year, description, trailer, min_age, id_category 
             FROM Movie 
             WHERE id = :id";
 
@@ -99,7 +97,6 @@ function readMovieDetail($id) {
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
-    $movie = $stmt->fetch(PDO::FETCH_ASSOC); // tableau associatif
-
-    return $movie;
+    $movies = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $movies;
 }
