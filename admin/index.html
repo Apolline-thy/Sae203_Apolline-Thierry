@@ -9,24 +9,33 @@
   <body>
     <section id="log"></section>
     <section id="MovieForm"></section>
+    <section id="ProfileForm"></section>
 
     <script type="module">
       import { Log } from "./component/Log/script.js";
       import { MovieForm } from "./component/MovieForm/script.js";
       import { DataMovie } from "./data/dataMovie.js";
+      import { ProfileForm } from "./component/ProfileForm/script.js";
 
       window.C = {};
-          C.handlerAddMovie = async function(){
-            let form = document.querySelector('.addMovie__form');
-            let fd = new FormData(form);
-            let res = await DataMovie.add(fd);
-            V.renderLog(res);
-        }
+      C.handlerAddMovie = async function () {
+        let form = document.querySelector(".addMovie__form");
+        let fd = new FormData(form);
+        let res = await DataMovie.add(fd);
+        V.renderLog(res);
+      };
 
+      C.handlerAddProfile = async function () {
+        let form = document.querySelector(".addProfile__form");
+        let fd = new FormData(form);
+        let res = await DataProfile.add(fd);
+        V.renderLog(res);
+      };
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
-         V.renderMovieForm("C.handlerAddMovie()");
+        V.renderMovieForm("C.handlerAddMovie()");
+        V.renderProfileForm("C.handlerAddProfile()");
       };
 
       window.V = {};
@@ -36,12 +45,15 @@
         content.innerHTML = Log.format(txt);
       };
 
-      
-        V.renderMovieForm = function(handler){
-            let content = document.querySelector('#MovieForm');
-            content.innerHTML = MovieForm.format(handler);
-        }
+      V.renderMovieForm = function (handler) {
+        let content = document.querySelector("#MovieForm");
+        content.innerHTML = MovieForm.format(handler);
+      };
 
+      V.renderProfileForm = function (handler) {
+        let content = document.querySelector("#ProfileForm");
+        content.innerHTML = ProfileForm.format(handler);
+      };
       C.start();
     </script>
   </body>

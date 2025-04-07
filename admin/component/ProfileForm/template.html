@@ -1,0 +1,23 @@
+<div class="profile">
+  <form id="ProfileForm" class="addProfile__form">
+    <h4 class="profile__title">Créer un profil</h4>
+
+    <input required type="text" name="title" placeholder="Nom du profil" />
+
+    <select required name="min_age">
+      <option value="" disabled selected>Choisir une restriction d'âge</option>
+      <option value="1">Tous public</option>
+      <option value="2">12+</option>
+      <option value="3">16+</option>
+      <option value="4">18+</option>
+    </select>
+
+    <input
+      class="profile__button"
+      onclick="{{handler}}"
+      type="button"
+      value="Ajouter un profil"
+      name="todo"
+    />
+  </form>
+</div>
