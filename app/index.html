@@ -46,8 +46,8 @@
       };
 
       C.getMovie = async function () {
-        let data = await DataMovie.requestMoviesByCategory();
-        V.renderMoviesCategory(data);
+        let data = await DataMovie.requestMovieCategory();
+        V.renderMoviesByCategory(data);
       };
 
       C.start = function () {

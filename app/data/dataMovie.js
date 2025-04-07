@@ -34,9 +34,7 @@ DataMovie.requestMovieDetail = async function (id) {
  * @returns {Promise<Array>} Liste des catégories avec leurs films.
  */
 DataMovie.requestMovieCategory = async function () {
-  let response = await fetch(
-    `${HOST_URL}/server/script.php?todo=readMovieCategory`
-  );
+  let response = await fetch(`${HOST_URL}/server/script.php?todo=readMovies`);
   let category = await response.json();
   return category;
 };
