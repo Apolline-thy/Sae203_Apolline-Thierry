@@ -86,17 +86,31 @@ function addMovie($n, $d, $i, $y, $l, $s, $c, $t, $a){
     // }
 }
 
+
 function readMovieDetail($id) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
 
-    $sql = "SELECT id, name, image, director, year, description, trailer, min_age, id_category 
+    // Requête SQL corrigée
+    $sql = "SELECT 
+                Movie.id, 
+                Movie.name, 
+                Movie.image, 
+                Movie.director, 
+                Movie.year, 
+                Movie.description, 
+                Movie.trailer, 
+                Movie.min_age, 
+                Category.name AS category
             FROM Movie 
-            WHERE id = :id";
+            LEFT JOIN Category ON Movie.id_category = Category.id
+            WHERE Movie.id = :id";
 
+    // Préparation et exécution de la requête
     $stmt = $cnx->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
+    // Récupération des résultats
     $movies = $stmt->fetch(PDO::FETCH_ASSOC);
     return $movies;
 }
