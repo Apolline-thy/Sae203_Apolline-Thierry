@@ -1,0 +1,48 @@
+
+.film{
+  font-family: var(--ff-sans);
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.film__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 1rem;
+ 
+}
+
+.film__img{
+    display: flex;
+    max-width: 18rem;
+    border-radius: 5%;
+    
+}
+
+.film__trailer{
+      margin-bottom: 1rem;
+}
+
+.film__content{
+   display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+  text-align: left;
+  justify-content: flex-start;
+  padding-top: 2rem;
+
+}
+
+.film__text{
+    display: flex;
+    flex-direction: column;
+    padding-top:10rem;
+    max-width:20rem;
+}
