@@ -3,7 +3,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  margin-bottom: 1rem;
   color: var(--color-fg);
   background-color: var(--color-bg);
 
@@ -18,10 +17,9 @@
     &:hover {
       --_offset: 0.5rem;
     }
-
   }
-  .navbar__list{
+  .navbar__list {
     display: flex;
-    flex-direction:row ;
+    flex-direction: row;
   }
 }

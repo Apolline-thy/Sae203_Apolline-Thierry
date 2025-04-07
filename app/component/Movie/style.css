@@ -47,6 +47,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    padding-right: 0.5rem;
   }
 
   .card__img {
