@@ -20,13 +20,25 @@ DataMovie.request = async function () {
   return data;
 };
 
-
 DataMovie.requestMovieDetail = async function (id) {
-    let response = await fetch(`${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`);
-    let data = await response.json();
-    console.log(data);  // Ajoute un log pour voir ce que retourne l'API
-    return data;
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`
+  );
+  let data = await response.json();
+  console.log(data); // Ajoute un log pour voir ce que retourne l'API
+  return data;
 };
 
-// Exporte DataMovie
+/**
+ * Récupère les films regroupés par catégorie.
+ * @returns {Promise<Array>} Liste des catégories avec leurs films.
+ */
+DataMovie.requestMovieCategory = async function () {
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=readMovieCategory`
+  );
+  let category = await response.json();
+  return category;
+};
+
 export { DataMovie };
