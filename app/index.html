@@ -14,10 +14,10 @@
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
-
       import {Movie} from "./component/Movie/script.js";
       import {DataMovie} from "./data/dataMovie.js";
       import {MovieDetail} from "./component/MovieDetail/script.js";
+      import {MovieCategory} from "./component/MovieCategory/script.js";
 
       
 
@@ -60,6 +60,7 @@ C.handlerDetail = async function (id) {
      V.renderMovie(data);
      };
 
+
       window.V = {};
 
   
@@ -72,6 +73,12 @@ C.handlerDetail = async function (id) {
         let content = document.querySelector("#content");
         content.innerHTML = Movie.format(data);
       };
+
+      V.renderMoviesByCategory = function (data) {
+        let content = document.querySelector("#content");
+        content.innerHTML = data.map(MovieCategory.format).join(""); 
+      };
+
 
       C.start(); // Démarre l'application
     </script>
