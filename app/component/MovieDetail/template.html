@@ -1,32 +1,29 @@
 <div class="film">
-
-<iframe 
-  class="film__trailer" 
-  width="100%" 
-  height="315" 
-  src="{{trailer}}" 
-  title="Trailer du film"
-  frameborder="0"
-  allow="autoplay; encrypted-media; picture-in-picture"
-  allowfullscreen>
-</iframe>
-
-    <h3 class="film__titre">{{name}}</h3>
-   <ul class="film__list">
-    <li class="film__item" >{{year}}</li>
-    <li class="film__item" >{{min_age}}</li>
-    <li class="film__item" >{{category}}</li>
+  <h3 class="film__titre">{{name}}</h3>
+  <img
+    class="film__img"
+    src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/{{image}}"
+  />
+  <ul class="film__list">
+    <li class="film__item">{{year}}</li>
+    <li class="film__item--age">{{min_age}}</li>
+    <li class="film__item">{{category}}</li>
   </ul>
   <div class="film__content">
-     <img class="film__img" src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/{{image}}">
-     <div class="film__text">
-    <p class="film__description">{{description}}</p>
-     <p class="film__description">{{director}}</p>
-     </div>
-     </div>
-     
-
-
-
+    <div class="film__text">
+      <p class="film__description">{{description}}</p>
+      <p class="film__description">Réalisateurs : {{director}}</p>
+    </div>
+  </div>
+  <iframe
+    class="film__trailer"
+    width="50%"
+    height="315"
+    src="{{trailer}}"
+    title="Trailer du film"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen
+  >
+  </iframe>
 </div>
-

@@ -45,7 +45,16 @@
 @media (max-width: 54rem) {
   .cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
+  }
+
+  .card__img {
+    height: 13rem;
+    width: 100%;
+  }
+
+  .card__titre {
+    font-size: 0.8rem;
   }
 }

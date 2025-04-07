@@ -1,41 +1,67 @@
 <div class="addMovie">
-    <h4 class="addMovie__title">Ajouter un film au catalogue</h4>
-    
-    <form id="MovieForm" class="addMovie__form">
- 
-        
-        <input required type="text" name="title" placeholder="Titre du film">
-        
-        <input required type="text" name="director" placeholder="Réalisateur">
+  <h4 class="addMovie__title">Ajouter un film au catalogue</h4>
 
-          <input required type="text" name="image" placeholder="Image">
-        
-        <input required type="number" name="year" placeholder="Année de sortie" min="1900" max="2099">
-        
-        <input required type="number" name="length" placeholder="Durée (minutes)" min="1">
-        
-        <textarea required name="description" placeholder="Synopsis du film"></textarea>
-        
-        <select required name="category">
-            <option value="" disabled selected>Choisir une catégorie</option>
-            <option value="1">Action</option>
-            <option value="2">Comédie</option>
-            <option value="3">Drame</option>  
-            <option value="4">Science-fiction</option>
-            <option value="5">Animation</option>
-            <option value="6">Thriller</option>
-            <option value="7">Horreur</option>
-            <option value="8">Aventure</option>
-            <option value="9">Fantaisie</option>
-            <option value="10">Documentaire</option>
-        </select>
-        
-        
-        <input required type="url" name="trailer" placeholder="URL du trailer">
-        
-        <input required type="number" name="min_age" placeholder="Âge minimum" min="0" max="18">
-        
-        <input class="addMovie__button" onclick="{{handler}}" type="button" value="Ajouter un film" name="todo">
+  <form id="MovieForm" class="addMovie__form">
+    <input required type="text" name="title" placeholder="Titre du film" />
 
-    </form>
+    <input required type="text" name="director" placeholder="Réalisateur" />
+
+    <input required type="text" name="image" placeholder="Image" />
+
+    <input
+      required
+      type="number"
+      name="year"
+      placeholder="Année de sortie"
+      min="1900"
+      max="2099"
+    />
+
+    <input
+      required
+      type="number"
+      name="length"
+      placeholder="Durée (minutes)"
+      min="1"
+    />
+
+    <textarea
+      required
+      name="description"
+      placeholder="Synopsis du film"
+    ></textarea>
+
+    <select required name="category">
+      <option value="" disabled selected>Choisir une catégorie</option>
+      <option value="1">Action</option>
+      <option value="2">Comédie</option>
+      <option value="3">Drame</option>
+      <option value="4">Science-fiction</option>
+      <option value="5">Animation</option>
+      <option value="6">Thriller</option>
+      <option value="7">Horreur</option>
+      <option value="8">Aventure</option>
+      <option value="9">Fantaisie</option>
+      <option value="10">Documentaire</option>
+    </select>
+
+    <input required type="url" name="trailer" placeholder="URL du trailer" />
+
+    <input
+      required
+      type="text"
+      name="min_age"
+      placeholder="Âge minimum"
+      min="0"
+      max="18"
+    />
+
+    <input
+      class="addMovie__button"
+      onclick="{{handler}}"
+      type="button"
+      value="Ajouter un film"
+      name="todo"
+    />
+  </form>
 </div>
