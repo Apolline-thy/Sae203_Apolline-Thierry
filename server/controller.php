@@ -66,3 +66,26 @@ function readMoviesByCategoryController() {
     $categories = getMoviesByCategory();
     return $categories ? $categories : false;
 }
+
+
+function addProfileController(){
+  // Lecture des données du formulaire
+  $name = $_REQUEST['name'];
+  $avatar = $_REQUEST['avatar'];
+  $date_naissance = $_REQUEST['date_naissance'];
+
+  // Vérification que tous les champs obligatoires sont présents
+  if (empty($name) || empty($avatar) ||empty($date_naissance)) {
+    return "Tous les champs doivent être remplis.";
+  }
+
+  // Appel de la fonction pour ajouter le film à la base de données
+  $ok = addProfile($name, $avatar, $date_naissance);
+
+  // Vérification du succès de l'opération
+  if ($ok != 0) {
+    return "Le profile \"$name\" a été ajouté avec succès.";
+  } else {
+    return "Une erreur s'est produite lors de l'ajout du film.";
+  }
+}

@@ -170,23 +170,23 @@ function getMoviesByCategory() {
  * Si l'insertion a réussi, le nombre de lignes affectées sera 1.
  * Si l'insertion a échoué, le nombre de lignes affectées sera 0.
  */
-function addProfile($n, $i,$a){
+function addProfile($n, $a,$d){
     // Connexion à la base de données
  
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
         // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Requête SQL pour ajouter un film à la base de données
-        $sql = "INSERT INTO Movie (name, image, min_age) 
-                VALUES (:name, :image, :min_age)";
+        $sql = "INSERT INTO Profile (name, avatar, date_naissance) 
+                VALUES (:name, :avatar, :date_naissance)";
         
         // Prépare la requête SQL
         $stmt = $cnx->prepare($sql);
         
         // Lie les paramètres aux valeurs
         $stmt->bindParam(':name', $n);
-        $stmt->bindParam(':image', $i);
-        $stmt->bindParam(':min_age', $a);
+        $stmt->bindParam(':avatar', $a);
+        $stmt->bindParam(':date_naissance', $d);
         
         // Exécute la requête SQL
         $stmt->execute();
@@ -194,9 +194,4 @@ function addProfile($n, $i,$a){
         // Récupère le nombre de lignes affectées par la requête
         $res = $stmt->rowCount(); 
         return $res; // Retourne le nombre de lignes affectées
-    // } catch (PDOException $e) {
-    //     // En cas d'erreur, retourne 0 et log l'erreur
-    //     error_log($e->getMessage());
-    //     return 0;
-    // }
 }

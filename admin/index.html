@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <title>SAE2.03 ADMIN</title>
     <meta charset="UTF-8" />
+    <title>SAE2.03 ADMIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
   </head>
   <body>
+    <!-- Zone d'affichage des logs -->
     <section id="log"></section>
+
+    <!-- Formulaire pour ajouter un film -->
     <section id="MovieForm"></section>
+
+    <!-- Formulaire pour ajouter un profil utilisateur -->
     <section id="ProfileForm"></section>
 
     <script type="module">
+      // Imports
       import { Log } from "./component/Log/script.js";
       import { MovieForm } from "./component/MovieForm/script.js";
-      import { DataMovie } from "./data/dataMovie.js";
       import { ProfileForm } from "./component/ProfileForm/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      import { DataProfile } from "./data/dataProfile.js";
 
+      // Contrôleur
       window.C = {};
+
       C.handlerAddMovie = async function () {
         let form = document.querySelector(".addMovie__form");
         let fd = new FormData(form);
@@ -38,6 +47,7 @@
         V.renderProfileForm("C.handlerAddProfile()");
       };
 
+      // Vue
       window.V = {};
 
       V.renderLog = function (txt) {
@@ -54,6 +64,8 @@
         let content = document.querySelector("#ProfileForm");
         content.innerHTML = ProfileForm.format(handler);
       };
+
+      // Initialisation
       C.start();
     </script>
   </body>

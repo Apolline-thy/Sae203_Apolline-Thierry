@@ -1,0 +1,17 @@
+.profile__button input[type="button"] {
+  background-color: rgb(113, 91, 69);
+  color: #fff;
+}
+
+.profile__button input[type="button"]:hover {
+  background-color: rgb(92, 81, 70);
+  color: #fff;
+}
+
+.profile__button {
+  align-items: center;
+  text-align: center;
+  width: 20rem;
+  border-radius: 2rem;
+  border: none;
+}
