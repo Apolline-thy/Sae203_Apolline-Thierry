@@ -157,3 +157,46 @@ function getMoviesByCategory() {
         return false;
     }
 }
+
+
+/**
+ * Ajoute un film à la base de données.
+ *
+ * @param string $n Le titre du film.
+ * @param string $c La catégorie du film (par exemple, Drame, Aventure, etc.).
+ * @param string $t L'URL du trailer du film.
+ * 
+ * A SAVOIR: une requête SQL de type insert retourne le nombre de lignes affectées par la requête.
+ * Si l'insertion a réussi, le nombre de lignes affectées sera 1.
+ * Si l'insertion a échoué, le nombre de lignes affectées sera 0.
+ */
+function addProfile($n, $i,$a){
+    // Connexion à la base de données
+ 
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Requête SQL pour ajouter un film à la base de données
+        $sql = "INSERT INTO Movie (name, image, min_age) 
+                VALUES (:name, :image, :min_age)";
+        
+        // Prépare la requête SQL
+        $stmt = $cnx->prepare($sql);
+        
+        // Lie les paramètres aux valeurs
+        $stmt->bindParam(':name', $n);
+        $stmt->bindParam(':image', $i);
+        $stmt->bindParam(':min_age', $a);
+        
+        // Exécute la requête SQL
+        $stmt->execute();
+        
+        // Récupère le nombre de lignes affectées par la requête
+        $res = $stmt->rowCount(); 
+        return $res; // Retourne le nombre de lignes affectées
+    // } catch (PDOException $e) {
+    //     // En cas d'erreur, retourne 0 et log l'erreur
+    //     error_log($e->getMessage());
+    //     return 0;
+    // }
+}
