@@ -64,13 +64,18 @@ if ( isset($_REQUEST['todo']) ){
       $data = readMovieDetailController();
       break;
 
-      case 'readMovies': // Nouveau cas pour récupérer les films groupés par catégorie
+      case 'readMovies': 
       $data = readMoviesByCategoryController();
       break;
 
-     case 'addProfile': // Nouveau cas pour récupérer les films groupés par catégorie
+     case 'addProfile': 
      $data = addProfileController();
      break;
+
+     case 'readProfiles':
+     $data = readProfilesController();
+     break;
+
 
 
     default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée

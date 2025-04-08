@@ -89,3 +89,8 @@ function addProfileController(){
     return "Une erreur s'est produite lors de l'ajout du film.";
   }
 }
+
+function readProfilesController() {
+    $profiles = getProfiles();
+    return $profiles ? $profiles : false;
+}
