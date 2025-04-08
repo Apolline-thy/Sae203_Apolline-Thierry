@@ -198,7 +198,8 @@ function addProfile($n, $a,$d){
         return $res; // Retourne le nombre de lignes affectées
 }
 
-function readProfiles($id) {
+
+function readProfiles() {
     $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
     $sql = "SELECT id, name, avatar FROM Profile";
     $stmt = $cnx->query($sql);
