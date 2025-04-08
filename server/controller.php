@@ -25,6 +25,17 @@ function readMoviesController(){
     return $movies;
 }
 
+function readMoviesByAgeController($age) {
+    try {
+        // Appelle la fonction du modèle pour récupérer les films filtrés par âge
+        $movies = readMoviesByAge($age); // Fonction dans model.php
+        return $movies;
+    } catch (Exception $e) {
+        error_log("Erreur dans readMoviesController : " . $e->getMessage());
+        return false; // Retourne false en cas d'erreur
+    }
+}
+
 function addMovieController(){
   // Lecture des données du formulaire
   $title = $_REQUEST['title'];
@@ -99,3 +110,4 @@ function readProfilesController($id = null) {
         return false;
     }
 }
+

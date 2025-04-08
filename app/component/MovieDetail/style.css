@@ -62,4 +62,7 @@
   .film__text {
     max-width: 25rem;
   }
+  .film__trailer {
+    width: 90%;
+  }
 }

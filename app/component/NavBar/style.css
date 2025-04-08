@@ -35,7 +35,7 @@
   }
 
   .nav__profile {
-    display: flex; /* Permet de centrer les éléments à l'intérieur */
-    align-items: center; /* Centre verticalement */
+    display: flex;
+    align-items: center;
   }
 }
