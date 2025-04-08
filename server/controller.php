@@ -91,6 +91,6 @@ function addProfileController(){
 }
 
 function readProfilesController() {
-    $profiles = getProfiles();
+    $profiles = readProfiles();
     return $profiles ? $profiles : false;
 }

@@ -18,6 +18,7 @@
       import { DataMovie } from "./data/dataMovie.js";
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataProfile } from "./data/dataProfile.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -44,21 +45,6 @@
           console.log("Film non trouvé");
         }
       };
-      C.handleProfileChange = function (selectElement) {
-        const selectedOption =
-          selectElement.options[selectElement.selectedIndex];
-        const newImage = selectedOption.dataset.img; // Récupère l'attribut data-img
-        const profileImage = document.querySelector(".profile-image");
-        const defaultImage =
-          "https://mmi.unilim.fr/~thierry18/SAE203/server/images/default-avatar.png"; // Chemin de l'image par défaut
-
-        // Construit l'URL complète de l'image ou utilise l'image par défaut si newImage est vide
-        profileImage.src = newImage
-          ? `https://mmi.unilim.fr/~lippler1/SAE203-Manon/server/images/${newImage}`
-          : defaultImage;
-
-        C.getMovie();
-      };
 
       C.getSelectedProfileId = function () {
         const profileSelect = document.querySelector("#profile-select");
@@ -68,9 +54,18 @@
         return null;
       };
 
-      C.start = function () {
-        V.renderNavBar("C.handlerAbout()", profiles);
-        C.getMovie();
+      C.start = async function () {
+        try {
+          let profiles = await DataProfile.read();
+          if (!profiles) {
+            console.error("Aucun profil récupéré !");
+            return;
+          }
+          V.renderNavBar("C.handlerAbout()", profiles);
+          C.getMovie();
+        } catch (error) {
+          console.error("Erreur lors du démarrage de l'application :", error);
+        }
       };
 
       C.getMovie = async function () {
