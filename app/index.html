@@ -46,19 +46,30 @@
         }
       };
 
-      C.getSelectedProfileId = function () {
+      C.handlerProfileChange = function () {
         const profileSelect = document.querySelector("#profile-select");
-        if (profileSelect) {
-          return profileSelect.value || null;
-        }
-        return null;
+        const selectedOption =
+          profileSelect.options[profileSelect.selectedIndex];
+        const imageFilename = selectedOption.getAttribute("data-img");
+
+        console.log("Option sélectionnée :", selectedOption);
+        console.log("Image sélectionnée :", imageFilename);
+
+        const picture = document.querySelector("#profile-image");
+        picture.src =
+          imageFilename ||
+          "https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/default-avatar.jpg";
+
+        console.log("Image mise à jour :", picture.src);
       };
 
       C.start = async function () {
         try {
           let profiles = await DataProfile.read();
-          if (!profiles) {
+          if (!profiles || profiles.length === 0) {
             console.error("Aucun profil récupéré !");
+            document.querySelector("#header").innerHTML =
+              "<p>Erreur : Impossible de récupérer les profils.</p>";
             return;
           }
           V.renderNavBar("C.handlerAbout()", profiles);
@@ -68,37 +79,37 @@
         }
       };
 
-      // C.getMovie = async function () {
-      //   let data = await DataMovie.requestMovieCategory();
-      //   V.renderMoviesByCategory(data);
-      // };
-
       C.getMovie = async function () {
-        // Récupère l'ID du profil sélectionné
-        const selectedProfileId = C.getSelectedProfileId();
-
-        // Récupère les données des profils
-        let profiles = await DataProfile.read();
-
-        // Trouve le profil correspondant à l'ID sélectionné
-        let selectedProfile = profiles.find(
-          (profile) => profile.id == selectedProfileId
-        );
-
-        // Si aucun profil n'est sélectionné, passe 0 comme âge
-        let age = selectedProfile ? selectedProfile.age : 0;
-
-        // Appelle DataMovie.request avec l'âge
-        let data = await DataMovie.request(age);
-
-        // Affiche les films filtrés par catégorie ou un message si aucun film n'est disponible
-        if (!data || data.length === 0) {
-          document.querySelector("#content").innerHTML =
-            "<p>Aucun film disponible pour votre tranche d'âge.</p>";
-        } else {
-          V.renderMoviesByCategory(data);
-        }
+        let data = await DataMovie.requestMovieCategory();
+        V.renderMoviesByCategory(data);
       };
+
+      // C.getMovie = async function () {
+      //   // Récupère l'ID du profil sélectionné
+      //   const selectedProfileId = C.getSelectedProfileId();
+
+      //   // Récupère les données des profils
+      //   let profiles = await DataProfile.read();
+
+      //   // Trouve le profil correspondant à l'ID sélectionné
+      //   let selectedProfile = profiles.find(
+      //     (profile) => profile.id == selectedProfileId
+      //   );
+
+      //   // Si aucun profil n'est sélectionné, passe 0 comme âge
+      //   let age = selectedProfile ? selectedProfile.age : 0;
+
+      //   // Appelle DataMovie.request avec l'âge
+      //   let data = await DataMovie.request(age);
+
+      //   // Affiche les films filtrés par catégorie ou un message si aucun film n'est disponible
+      //   if (!data || data.length === 0) {
+      //     document.querySelector("#content").innerHTML =
+      //       "<p>Aucun film disponible pour votre tranche d'âge.</p>";
+      //   } else {
+      //     V.renderMoviesByCategory(data);
+      //   }
+      // };
 
       window.V = {};
 

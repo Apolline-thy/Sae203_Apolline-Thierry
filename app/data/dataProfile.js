@@ -10,6 +10,7 @@ DataProfile.read = async function () {
       throw new Error(`Erreur HTTP : ${answer.status}`);
     }
     let data = await answer.json();
+    console.log("Profils récupérés :", data);
     return data;
   } catch (error) {
     console.error("Erreur lors de la récupération des profils :", error);

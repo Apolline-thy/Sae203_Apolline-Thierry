@@ -6,19 +6,14 @@
     </li>
   </ul>
   <div class="nav__profile">
-    <select
-      id="profile-select"
-      class="navbar__select"
-      onchange="C.handlerProfileChange(this)"
-    >
+    <select id="profile-select" class="navbar__select" onchange="{{handler}}">
       {{profiles}}
     </select>
-    <!-- <img
-        id="profile-image"
-        src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/avatar.jpg"
-        alt="Profile Image"
-        class="profile-image"
-        onclick="C.getSelectedProfileId()"
-      /> -->
+    <img
+      id="profile-image"
+      src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/{{image}}"
+      alt="Profile Image"
+      class="profile-image"
+    />
   </div>
 </nav>
