@@ -90,7 +90,12 @@ function addProfileController(){
   }
 }
 
-function readProfilesController() {
-    $profiles = readProfiles();
-    return $profiles ? $profiles : false;
+function readProfilesController($id = null) {
+    try {
+        $profiles = readProfiles($id); // Appelle la fonction définie dans model.php
+        return $profiles ? $profiles : false;
+    } catch (Exception $e) {
+        error_log("Erreur dans readProfilesController : " . $e->getMessage());
+        return false;
+    }
 }

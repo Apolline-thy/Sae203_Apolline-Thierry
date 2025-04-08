@@ -13,10 +13,11 @@ NavBar.format = function (hAbout, profiles) {
     options += `<option value="${p.id}" data-img="${p.avatar}" data-age="${p.min_age}">${p.name}</option>`;
   }
 
-  let image = profiles[0]?.avatar || "";
+  // let image =
+  //   profiles[0]?.avatar ||
+  //   "https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/avatar.jpg";
 
-  html = html.replace("{{profiles}}", options); // Remplacez correctement {{profiles}}
-  html = html.replace("{{image}}", image);
+  html = html.replace("{{profiles}}", options);
 
   return html;
 };

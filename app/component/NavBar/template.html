@@ -4,21 +4,21 @@
     <li class="navbar__item" onclick="window.location.href = 'index.html'">
       Home
     </li>
-    <div class="nav__profile">
-      <select
-        id="profile-select"
-        class="navbar__select"
-        onchange="C.handleProfileChange(this)"
-      >
-        {{profiles}}
-      </select>
-      <img
+  </ul>
+  <div class="nav__profile">
+    <select
+      id="profile-select"
+      class="navbar__select"
+      onchange="C.handleProfileChange(this)"
+    >
+      {{profiles}}
+    </select>
+    <!-- <img
         id="profile-image"
-        src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/avatar1.png"
+        src="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/avatar.jpg"
         alt="Profile Image"
         class="profile-image"
         onclick="C.getSelectedProfileId()"
-      />
-    </div>
-  </ul>
+      /> -->
+  </div>
 </nav>
