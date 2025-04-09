@@ -12,6 +12,7 @@ NavBar.format = function (hAbout, profiles) {
     let p = profiles[i];
     options += `<option value="${p.id}" data-age="0" data-img="https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/${p.avatar}">${p.name}</option>`;
   }
+
   console.log("Options générées :", options); // Vérifiez les options ici
 
   let image = profiles[0]?.avatar
@@ -20,7 +21,7 @@ NavBar.format = function (hAbout, profiles) {
 
   html = html.replace("{{image}}", image);
   html = html.replace("{{profiles}}", options);
-  html = html.replace("{{handler}}", "C.handlerProfileChange");
+  html = html.replace("{{handler}}", "C.handlerProfileChange()");
 
   return html;
 };

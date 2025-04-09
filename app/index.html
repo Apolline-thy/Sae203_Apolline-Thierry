@@ -45,23 +45,31 @@
           console.log("Film non trouvé");
         }
       };
-
       C.handlerProfileChange = function () {
         const profileSelect = document.querySelector("#profile-select");
+
+        // Sélectionne l'option actuellement choisie
         const selectedOption =
           profileSelect.options[profileSelect.selectedIndex];
         console.log("Option sélectionnée :", selectedOption);
 
+        // Récupère l'URL de l'image dans l'attribut data-img
         const imageFilename = selectedOption.getAttribute("data-img");
         console.log("Image sélectionnée :", imageFilename);
 
         const picture = document.querySelector("#profile-image");
-        picture.src =
-          imageFilename ||
-          "https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/default-avatar.jpg";
+
+        // Change l'image uniquement si une valeur est présente
+        if (imageFilename) {
+          picture.src = imageFilename;
+        } else {
+          picture.src =
+            "https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/default-avatar.jpg";
+        }
 
         console.log("Image mise à jour :", picture.src);
       };
+
       C.start = async function () {
         try {
           let profiles = await DataProfile.read();
