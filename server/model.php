@@ -207,15 +207,27 @@ function readProfiles() {
 }
 
 
+
+
 function readMoviesByAge($age) {
     try {
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
 
-        $sql = "SELECT id, name, image, director, year, description, trailer, min_age 
-                FROM Movie 
-                WHERE min_age <= :age";
+        $sql = "SELECT 
+                    Movie.id, 
+                    Movie.name, 
+                    Movie.image, 
+                    Movie.director, 
+                    Movie.year, 
+                    Movie.description, 
+                    Movie.trailer, 
+                    Movie.min_age, 
+                    Category.name AS category
+                FROM Movie
+                LEFT JOIN Category ON Movie.id_category = Category.id
+                WHERE Movie.min_age <= :age";
 
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':age', $age, PDO::PARAM_INT);

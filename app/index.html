@@ -89,6 +89,37 @@
       //   let data = await DataMovie.requestMovieCategory();
       //   V.renderMoviesByCategory(data);
       // };
+      // C.getMovie = async function () {
+      //   const profileSelect = document.querySelector("#profile-select");
+      //   const selectedOption =
+      //     profileSelect.options[profileSelect.selectedIndex];
+      //   const age = selectedOption
+      //     ? parseInt(selectedOption.getAttribute("data-age")) || 0
+      //     : 0;
+
+      //   console.log("Âge du profil sélectionné :", age);
+
+      //   // Si aucun profil n'est sélectionné, affichez tous les films
+      //   let data;
+      //   if (age === 0) {
+      //     console.log(
+      //       "Aucun profil sélectionné, récupération de tous les films."
+      //     );
+      //     data = await DataMovie.requestMovieCategory(); // Récupère tous les films par catégorie
+      //   } else {
+      //     data = await DataMovie.request(age); // Récupère les films filtrés par âge
+      //   }
+
+      //   console.log("Données reçues dans C.getMovie :", data);
+
+      //   if (!data || data.length === 0) {
+      //     document.querySelector("#content").innerHTML =
+      //       "<p>Aucun film disponible pour votre tranche d'âge.</p>";
+      //   } else {
+      //     V.renderMoviesByCategory(data);
+      //   }
+      // };
+
       C.getMovie = async function () {
         const profileSelect = document.querySelector("#profile-select");
         const selectedOption =
@@ -99,16 +130,42 @@
 
         console.log("Âge du profil sélectionné :", age);
 
-        let data = await DataMovie.request(age);
-        console.log("Données reçues dans C.getMovie :", data); // Vérifiez ici
+        let data;
+        if (age === 0) {
+          console.log(
+            "Aucun profil sélectionné, récupération de tous les films."
+          );
+          data = await DataMovie.requestMovieCategory(); // Déjà groupé
+        } else {
+          let flatMovies = await DataMovie.request(age); // Liste plate de films
+
+          // On regroupe les films par catégorie
+          data = [];
+          let categories = {};
+
+          for (let movie of flatMovies) {
+            if (!categories[movie.category]) {
+              categories[movie.category] = {
+                name: movie.category, // Correction ici
+                movies: [],
+              };
+            }
+            categories[movie.category].movies.push(movie);
+          }
+
+          data = Object.values(categories); // On récupère un tableau des objets catégorie
+        }
+
+        console.log("Données regroupées :", data);
 
         if (!data || data.length === 0) {
           document.querySelector("#content").innerHTML =
             "<p>Aucun film disponible pour votre tranche d'âge.</p>";
         } else {
-          V.renderMoviesByCategory(data);
+          V.renderMoviesByCategory(data); // Tu peux maintenant l'utiliser dans tous les cas
         }
       };
+
       window.V = {};
 
       V.renderNavBar = function (hAbout, profiles) {

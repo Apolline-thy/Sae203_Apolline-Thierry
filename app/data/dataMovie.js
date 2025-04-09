@@ -21,7 +21,8 @@ DataMovie.request = async function (age) {
     `${HOST_URL}/server/script.php?todo=readMoviesByAge&age=${age}`
   );
   let data = await answer.json();
-  console.log("Réponse reçue dans DataMovie.request :", data); // Vérifiez ici
+  console.log("Réponse brute du serveur : ", data); // Affiche la réponse du serveur
+
   return data;
 };
 
@@ -33,6 +34,24 @@ DataMovie.requestMovieCategory = async function () {
   let response = await fetch(`${HOST_URL}/server/script.php?todo=readMovies`);
   let category = await response.json();
   return category;
+};
+
+DataMovie.requestMovieDetail = async function (id) {
+  console.log(`Requête envoyée pour le détail du film : ${id}`);
+  try {
+    let answer = await fetch(
+      `${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`
+    );
+    if (!answer.ok) {
+      throw new Error(`Erreur HTTP : ${answer.status}`);
+    }
+    let data = await answer.json();
+    console.log("Détail du film reçu :", data); // Vérifiez ici
+    return data;
+  } catch (error) {
+    console.error("Erreur lors de la récupération du détail du film :", error);
+    return null;
+  }
 };
 
 export { DataMovie };
