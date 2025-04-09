@@ -78,9 +78,10 @@ if ( isset($_REQUEST['todo']) ){
 
     case 'readMoviesByAge':
     $age = isset($_GET['age']) ? intval($_GET['age']) : 0; 
+    error_log("Âge reçu dans script.php : " . $age); // Vérifiez ici
     $data = readMoviesByAgeController($age);
+    error_log("Données retournées par le contrôleur : " . json_encode($data)); // Vérifiez ici
     break;
-
 
     default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
       echo json_encode('[error] Unknown todo value');

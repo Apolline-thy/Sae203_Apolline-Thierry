@@ -20,19 +20,18 @@
  */
 require("model.php");
 
-function readMoviesController(){
-    $movies = getAllMovies();
-    return $movies;
-}
+// function readMoviesController(){
+//     $movies = getAllMovies();
+//     return $movies;
+// }
 
 function readMoviesByAgeController($age) {
     try {
-        // Appelle la fonction du modèle pour récupérer les films filtrés par âge
         $movies = readMoviesByAge($age); // Fonction dans model.php
         return $movies;
     } catch (Exception $e) {
-        error_log("Erreur dans readMoviesController : " . $e->getMessage());
-        return false; // Retourne false en cas d'erreur
+        error_log("Erreur dans readMoviesByAgeController : " . $e->getMessage());
+        return false;
     }
 }
 

@@ -10,13 +10,10 @@ NavBar.format = function (hAbout, profiles) {
   let options = `<option value="" data-age="0" data-img="">Choisir un profil</option>`;
   for (let i = 0; i < profiles.length; i++) {
     let p = profiles[i];
-    options += `<option value="${p.id}" data-age="0" data-img="../server/images/${p.avatar}">${p.name}</option>`;
+    options += `<option value="${p.id}" data-age="${p.age}" data-img="../server/images/${p.avatar}">${p.name}</option>`;
   }
 
-  console.log("Options générées :", options); // Vérifiez les options ici
-
-  // let image =
-  //   "https://mmi.unilim.fr/~thierry18/SAE2.03/server/images/default-avatar.jpg";
+  console.log("Options générées :", options); // Vérifiez ici
 
   let image = "../server/images/default-avatar.jpg";
 

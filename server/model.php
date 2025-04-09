@@ -201,7 +201,7 @@ function addProfile($n, $a,$d){
 
 function readProfiles() {
     $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
-    $sql = "SELECT id, name, avatar FROM Profile";
+    $sql = "SELECT id, name, avatar, TIMESTAMPDIFF(YEAR, date_naissance, CURDATE()) AS age FROM Profile";
     $stmt = $cnx->query($sql);
     return $stmt->fetchAll(PDO::FETCH_OBJ); 
 }
@@ -209,21 +209,18 @@ function readProfiles() {
 
 function readMoviesByAge($age) {
     try {
-        // Connexion à la base de données
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
 
-        // Requête SQL pour récupérer les films avec un âge minimum
         $sql = "SELECT id, name, image, director, year, description, trailer, min_age 
                 FROM Movie 
-                WHERE min_age <= :age"; // Filtre les films en fonction de l'âge
+                WHERE min_age <= :age";
 
         $stmt = $cnx->prepare($sql);
         $stmt->bindParam(':age', $age, PDO::PARAM_INT);
         $stmt->execute();
 
-        // Récupère les résultats sous forme d'objets
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     } catch (Exception $e) {
         error_log("Erreur SQL : " . $e->getMessage());

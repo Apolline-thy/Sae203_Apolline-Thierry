@@ -14,19 +14,14 @@ let DataMovie = {};
  * renvoie les données contenues dans la réponse du serveur (data).
  */
 DataMovie.request = async function (age) {
+  console.log(
+    `Requête envoyée : ${HOST_URL}/server/script.php?todo=readMoviesByAge&age=${age}`
+  );
   let answer = await fetch(
     `${HOST_URL}/server/script.php?todo=readMoviesByAge&age=${age}`
   );
   let data = await answer.json();
-  return data;
-};
-
-DataMovie.requestMovieDetail = async function (id) {
-  let response = await fetch(
-    `${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`
-  );
-  let data = await response.json();
-  console.log(data); // Ajoute un log pour voir ce que retourne l'API
+  console.log("Réponse reçue dans DataMovie.request :", data); // Vérifiez ici
   return data;
 };
 

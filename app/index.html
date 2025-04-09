@@ -45,21 +45,19 @@
           console.log("Film non trouvé");
         }
       };
+
       C.handlerProfileChange = function () {
         const profileSelect = document.querySelector("#profile-select");
 
-        // Sélectionne l'option actuellement choisie
         const selectedOption =
           profileSelect.options[profileSelect.selectedIndex];
         console.log("Option sélectionnée :", selectedOption);
 
-        // Récupère l'URL de l'image dans l'attribut data-img
         const imageFilename = selectedOption.getAttribute("data-img");
         console.log("Image sélectionnée :", imageFilename);
 
         const picture = document.querySelector("#profile-image");
 
-        // Change l'image uniquement si une valeur est présente
         if (imageFilename) {
           picture.src = imageFilename;
         } else {
@@ -67,6 +65,8 @@
         }
 
         console.log("Image mise à jour :", picture.src);
+
+        C.getMovie();
       };
 
       C.start = async function () {
@@ -85,38 +85,30 @@
         }
       };
 
-      C.getMovie = async function () {
-        let data = await DataMovie.requestMovieCategory();
-        V.renderMoviesByCategory(data);
-      };
-
       // C.getMovie = async function () {
-      //   // Récupère l'ID du profil sélectionné
-      //   const selectedProfileId = C.getSelectedProfileId();
-
-      //   // Récupère les données des profils
-      //   let profiles = await DataProfile.read();
-
-      //   // Trouve le profil correspondant à l'ID sélectionné
-      //   let selectedProfile = profiles.find(
-      //     (profile) => profile.id == selectedProfileId
-      //   );
-
-      //   // Si aucun profil n'est sélectionné, passe 0 comme âge
-      //   let age = selectedProfile ? selectedProfile.age : 0;
-
-      //   // Appelle DataMovie.request avec l'âge
-      //   let data = await DataMovie.request(age);
-
-      //   // Affiche les films filtrés par catégorie ou un message si aucun film n'est disponible
-      //   if (!data || data.length === 0) {
-      //     document.querySelector("#content").innerHTML =
-      //       "<p>Aucun film disponible pour votre tranche d'âge.</p>";
-      //   } else {
-      //     V.renderMoviesByCategory(data);
-      //   }
+      //   let data = await DataMovie.requestMovieCategory();
+      //   V.renderMoviesByCategory(data);
       // };
+      C.getMovie = async function () {
+        const profileSelect = document.querySelector("#profile-select");
+        const selectedOption =
+          profileSelect.options[profileSelect.selectedIndex];
+        const age = selectedOption
+          ? parseInt(selectedOption.getAttribute("data-age")) || 0
+          : 0;
 
+        console.log("Âge du profil sélectionné :", age);
+
+        let data = await DataMovie.request(age);
+        console.log("Données reçues dans C.getMovie :", data); // Vérifiez ici
+
+        if (!data || data.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film disponible pour votre tranche d'âge.</p>";
+        } else {
+          V.renderMoviesByCategory(data);
+        }
+      };
       window.V = {};
 
       V.renderNavBar = function (hAbout, profiles) {
