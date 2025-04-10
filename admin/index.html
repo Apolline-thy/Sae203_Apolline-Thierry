@@ -15,6 +15,7 @@
 
     <!-- Formulaire pour ajouter un profil utilisateur -->
     <section id="ProfileForm"></section>
+    <section id="ModifyProfile"></section>
 
     <script type="module">
       // Imports
@@ -23,6 +24,7 @@
       import { ProfileForm } from "./component/ProfileForm/script.js";
       import { DataMovie } from "./data/dataMovie.js";
       import { DataProfile } from "./data/dataProfile.js";
+      import { ModifyProfile } from "./component/ModifyProfile/script.js";
 
       // Contrôleur
       window.C = {};
@@ -41,10 +43,34 @@
         V.renderLog(res);
       };
 
+      C.handlerProfileModify = async function () {
+        let form = document.querySelector(".modifyProfile__form");
+        let fd = new FormData(form);
+        let res = await DataProfile.modify(fd);
+        V.renderLog(res);
+      };
+
+      C.handlerSelectProfile = function () {
+        let select = document.querySelector("#profile-select");
+        let selectedOption = select.options[select.selectedIndex];
+
+        // Récupérer les données du profil sélectionné
+        let name = selectedOption.getAttribute("data-name");
+        let avatar = selectedOption.getAttribute("data-avatar");
+        let date_naissance = selectedOption.getAttribute("data-date_naissance");
+
+        // Remplir les champs du formulaire avec les données du profil sélectionné
+        document.querySelector("input[name='name']").value = name || "";
+        document.querySelector("input[name='avatar']").value = avatar || "";
+        document.querySelector("input[name='date_naissance']").value =
+          date_naissance || "";
+      };
+
       C.start = function () {
         V.renderLog("Démarrage de l'application");
         V.renderMovieForm("C.handlerAddMovie()");
         V.renderProfileForm("C.handlerAddProfile()");
+        V.renderModifyProfile("C.handlerProfileModify()", profiles);
       };
 
       // Vue
@@ -63,6 +89,11 @@
       V.renderProfileForm = function (handler) {
         let content = document.querySelector("#ProfileForm");
         content.innerHTML = ProfileForm.format(handler);
+      };
+
+      V.renderModifyProfile = function (handler) {
+        let content = document.querySelector("#ModifyProfile");
+        content.innerHTML = ModifyProfile.format(handler, profiles);
       };
 
       // Initialisation

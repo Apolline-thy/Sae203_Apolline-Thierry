@@ -239,3 +239,28 @@ function readMoviesByAge($age) {
         return false;
     }
 }
+
+
+
+function modifyProfile($id, $name, $avatar, $date_naissance) {
+    try {
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+
+        $sql = "UPDATE Profile 
+                SET name = :name, avatar = :avatar, date_naissance = :date_naissance 
+                WHERE id = :id";
+
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+        $stmt->bindParam(':date_naissance', $date_naissance, PDO::PARAM_STR);
+
+        return $stmt->execute();
+    } catch (Exception $e) {
+        error_log("Erreur SQL dans modifyProfile : " . $e->getMessage());
+        return false;
+    }
+}

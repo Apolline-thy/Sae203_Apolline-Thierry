@@ -85,41 +85,6 @@
         }
       };
 
-      // C.getMovie = async function () {
-      //   let data = await DataMovie.requestMovieCategory();
-      //   V.renderMoviesByCategory(data);
-      // };
-      // C.getMovie = async function () {
-      //   const profileSelect = document.querySelector("#profile-select");
-      //   const selectedOption =
-      //     profileSelect.options[profileSelect.selectedIndex];
-      //   const age = selectedOption
-      //     ? parseInt(selectedOption.getAttribute("data-age")) || 0
-      //     : 0;
-
-      //   console.log("Âge du profil sélectionné :", age);
-
-      //   // Si aucun profil n'est sélectionné, affichez tous les films
-      //   let data;
-      //   if (age === 0) {
-      //     console.log(
-      //       "Aucun profil sélectionné, récupération de tous les films."
-      //     );
-      //     data = await DataMovie.requestMovieCategory(); // Récupère tous les films par catégorie
-      //   } else {
-      //     data = await DataMovie.request(age); // Récupère les films filtrés par âge
-      //   }
-
-      //   console.log("Données reçues dans C.getMovie :", data);
-
-      //   if (!data || data.length === 0) {
-      //     document.querySelector("#content").innerHTML =
-      //       "<p>Aucun film disponible pour votre tranche d'âge.</p>";
-      //   } else {
-      //     V.renderMoviesByCategory(data);
-      //   }
-      // };
-
       C.getMovie = async function () {
         const profileSelect = document.querySelector("#profile-select");
         const selectedOption =
