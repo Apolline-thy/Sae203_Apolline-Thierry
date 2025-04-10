@@ -1,0 +1,56 @@
+.modifyProfile__button input[type="button"] {
+  background-color: rgb(113, 91, 69);
+  color: #fff;
+}
+
+.modifyProfile__button input[type="button"]:hover {
+  background-color: rgb(92, 81, 70);
+  color: #fff;
+}
+
+.modifyProfile__button {
+  align-items: center;
+  text-align: center;
+  width: 20rem;
+  border-radius: 2rem;
+  border: none;
+  color: white;
+  background-color: rgb(113, 91, 69);
+}
+
+.modifyprofile {
+  font-family: var(--ff-sans);
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  border: solid black thin;
+  border-radius: 5%;
+}
+
+.modifyProfile__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+.modifyProfile__form select {
+  font-size: medium;
+  border-style: none;
+  margin-top: 0.8rem;
+}
+
+.modifyProfile__form input {
+  margin-top: 0.8rem;
+  font-size: medium;
+  border-style: none;
+  display: inline-block;
+  height: 2rem;
+}
+
+.modifyprofile__title {
+  text-align: center;
+  margin-bottom: 0.2rem;
+  color: #000000;
+  font-size: 1.5rem;
+}

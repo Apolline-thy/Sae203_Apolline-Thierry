@@ -1,19 +1,19 @@
 <div class="modifyprofile">
-  <h4 class="modifprofile__title">Modifier un profil</h4>
+  <h4 class="modifyprofile__title">Modifier un profil</h4>
 
   <form id="ModifyProfile" class="modifyProfile__form">
     <select
       id="profile-select"
       class="navbar__select"
-      onchange="{{handlerModify}}"
+      onchange="{{handlerSelect}}"
     >
+      <option value="" disabled selected>Choisir un profil</option>
+
       {{profiles}}
     </select>
 
     <input required type="text" name="name" placeholder="Nom du profil" />
-
     <input required type="text" name="avatar" placeholder="Avatar" />
-
     <input
       required
       type="date"
@@ -23,7 +23,7 @@
 
     <input
       class="modifyProfile__button"
-      onclick="{{handler}}"
+      onclick="{{handlerModify}}"
       type="button"
       value="Modifier"
       name="todo"
