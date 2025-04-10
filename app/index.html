@@ -54,7 +54,6 @@
         console.log("Option sélectionnée :", selectedOption);
 
         const imageFilename = selectedOption.getAttribute("data-img");
-        console.log("Image sélectionnée :", imageFilename);
 
         const picture = document.querySelector("#profile-image");
 
@@ -63,8 +62,6 @@
         } else {
           picture.src = "../server/images/default-avatar.jpg";
         }
-
-        console.log("Image mise à jour :", picture.src);
 
         C.getMovie();
       };

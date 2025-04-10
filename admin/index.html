@@ -48,11 +48,12 @@
         V.renderLog(res);
       };
 
-      C.start = function () {
+      C.start = async function () {
         V.renderLog("Démarrage de l'application");
         V.renderMovieForm("C.handlerAddMovie()");
         V.renderProfileForm("C.handlerAddProfile()");
-        V.renderModifyProfile("C.handlerProfileModify()");
+        let profiles = await DataProfile.read();
+        V.renderModifyProfile(profiles);
       };
 
       // Vue
@@ -73,9 +74,9 @@
         content.innerHTML = ProfileForm.format(handler);
       };
 
-      V.renderModifyProfile = function (handler) {
+      V.renderModifyProfile = function (data) {
         let content = document.querySelector("#ModifyProfile");
-        content.innerHTML = ModifyProfile.format(handler);
+        content.innerHTML = ModifyProfile.format(data);
       };
 
       // Initialisation

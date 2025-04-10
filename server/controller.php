@@ -111,14 +111,14 @@ function readProfilesController($id = null) {
 }
 
 function modifyProfileController() {
-    try {
+
         $id = intval($_POST['id']);
         $name = $_POST['name'];
         $avatar = $_POST['avatar'];
         $date_naissance = $_POST['date_naissance'];
 
         if (empty($id) || empty($name) || empty($avatar) || empty($date_naissance)) {
-            http_response_code(400);
+           
             return ["message" => "Tous les champs doivent être remplis."];
         }
 
@@ -127,13 +127,8 @@ function modifyProfileController() {
         if ($result) {
             return ["message" => "Profil modifié avec succès."];
         } else {
-            http_response_code(500);
             return ["message" => "Erreur lors de la modification du profil."];
         }
-    } catch (Exception $e) {
-        error_log("Erreur dans modifyProfileController : " . $e->getMessage());
-        http_response_code(500);
-        return ["message" => "Erreur interne du serveur."];
-    }
-}
+    } 
+
 

@@ -4,11 +4,11 @@
   <form id="ModifyProfile" class="modifyProfile__form">
     <select
       id="profile-select"
+      name="id"
       class="navbar__select"
       onchange="{{handlerSelect}}"
     >
       <option value="" disabled selected>Choisir un profil</option>
-
       {{profiles}}
     </select>
 
