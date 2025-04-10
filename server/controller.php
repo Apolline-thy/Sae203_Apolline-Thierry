@@ -111,7 +111,7 @@ function readProfilesController($id = null) {
 }
 
 function modifyProfileController() {
-
+  
         $id = intval($_POST['id']);
         $name = $_POST['name'];
         $avatar = $_POST['avatar'];
@@ -130,5 +130,4 @@ function modifyProfileController() {
             return ["message" => "Erreur lors de la modification du profil."];
         }
     } 
-
 

@@ -210,7 +210,7 @@ function readProfiles() {
 
 
 function readMoviesByAge($age) {
-    try {
+  
         $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
@@ -234,11 +234,8 @@ function readMoviesByAge($age) {
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-    } catch (Exception $e) {
-        error_log("Erreur SQL : " . $e->getMessage());
-        return false;
-    }
-}
+    };
+
 
 
 

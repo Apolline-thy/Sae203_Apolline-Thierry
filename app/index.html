@@ -67,19 +67,15 @@
       };
 
       C.start = async function () {
-        try {
-          let profiles = await DataProfile.read();
-          if (!profiles || profiles.length === 0) {
-            console.error("Aucun profil récupéré !");
-            document.querySelector("#header").innerHTML =
-              "<p>Erreur : Impossible de récupérer les profils.</p>";
-            return;
-          }
-          V.renderNavBar("C.handlerAbout()", profiles);
-          C.getMovie();
-        } catch (error) {
-          console.error("Erreur lors du démarrage de l'application :", error);
+        let profiles = await DataProfile.read();
+        if (!profiles || profiles.length === 0) {
+          console.error("Aucun profil récupéré !");
+          document.querySelector("#header").innerHTML =
+            "<p>Erreur : Impossible de récupérer les profils.</p>";
+          return;
         }
+        V.renderNavBar("C.handlerAbout()", profiles);
+        C.getMovie();
       };
 
       C.getMovie = async function () {
