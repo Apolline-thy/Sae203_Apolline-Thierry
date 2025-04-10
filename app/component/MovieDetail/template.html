@@ -1,15 +1,15 @@
 <div class="film">
-  <h3 class="film__titre">{{name}}</h3>
-  <img class="film__img" src="../server/images/{{image}}" />
-  <ul class="film__list">
-    <li class="film__item">{{year}}</li>
-    <li class="film__item--age">{{min_age}}</li>
-    <li class="film__item">{{category}}</li>
-  </ul>
   <div class="film__content">
+    <img class="film__img" src="../server/images/{{image}}" />
     <div class="film__text">
+      <h3 class="film__titre">{{name}}</h3>
       <p class="film__description">{{description}}</p>
       <p class="film__description--realisateur">Réalisateurs : {{director}}</p>
+      <ul class="film__list">
+        <li class="film__item">{{year}}</li>
+        <li class="film__item--age">{{min_age}}</li>
+        <li class="film__item">{{category}}</li>
+      </ul>
     </div>
   </div>
   <iframe

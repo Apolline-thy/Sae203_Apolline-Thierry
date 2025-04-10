@@ -25,6 +25,8 @@
   flex-direction: column;
   border: solid black thin;
   border-radius: 5%;
+  padding: 1rem;
+  margin: 2rem;
 }
 
 .modifyProfile__form {

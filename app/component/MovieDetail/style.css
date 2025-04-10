@@ -1,7 +1,7 @@
 .film {
   font-family: var(--ff-sans);
   width: 100%;
-  margin: auto;
+  margin: 2rem;
   display: flex;
   flex-direction: column;
   border-radius: 5%;
@@ -29,7 +29,7 @@
 }
 
 .film__trailer {
-  margin-bottom: 1rem;
+  padding-top: 3rem;
 }
 
 .film__content {
@@ -38,7 +38,8 @@
   gap: 1rem;
   text-align: left;
   justify-content: flex-start;
-  padding-bottom: 2rem;
+  padding-top: 5rem;
+  column-gap: 5rem;
 }
 
 .film__text {
