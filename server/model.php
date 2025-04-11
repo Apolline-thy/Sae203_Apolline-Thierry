@@ -271,7 +271,7 @@ function modifyProfile($id, $name, $avatar, $date_naissance) {
  */
 
 function addFavoris($movieId, $profileId) {
-    try {
+  
         $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
         $sql = "INSERT INTO Favoris (Movie_id, Profile_id) 
                 VALUES (:Movie_id, :Profile_id)";
@@ -281,11 +281,8 @@ function addFavoris($movieId, $profileId) {
         $stmt->execute();
         error_log("Requête SQL exécutée avec succès : Movie_id=$movieId, Profile_id=$profileId");
         return $stmt->rowCount();
-    } catch (Exception $e) {
-        error_log("Erreur SQL : " . $e->getMessage());
-        return 0;
-    }
-}
+    };
+
 
 function getFavoris($profileId) {
       $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);

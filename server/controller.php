@@ -134,24 +134,20 @@ function modifyProfileController() {
 function addFavorisController() {
     $movieId = $_REQUEST['movieId'] ?? null;
     $profileId = $_REQUEST['profileId'] ?? null;
-
-    error_log("Paramètres reçus : movieId=$movieId, profileId=$profileId");
-
     if ($movieId && $profileId) {
         $result = addFavoris($movieId, $profileId); // Appelle la fonction dans model.php
         return $result;
-    } else {
-        error_log("Paramètres manquants");
-        return false; // Paramètres manquants
     }
-}
+};
 
- function getFavorisController() {
-    try {
-        $movies = getFavoris($movieId, $profileId); // Fonction dans model.php
-        return $movies;
-    } catch (Exception $e) {
-        error_log("Erreur dans readMoviesByAgeController : " . $e->getMessage());
+function getFavorisController() {
+    $profileId = $_REQUEST['profileId'] ?? null;
+
+    if (!$profileId) {
+        error_log("Aucun profileId reçu dans getFavorisController");
         return false;
     }
+    
+        $movies = getFavoris($profileId); // on passe uniquement le profileId
+        return $movies;
 }
