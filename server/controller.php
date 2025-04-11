@@ -141,3 +141,14 @@ function modifyProfileController() {
         return false;
     }
 }
+
+
+ function getFavorisController() {
+    try {
+        $movies = getFavoris($profileId); // Fonction dans model.php
+        return $movies;
+    } catch (Exception $e) {
+        error_log("Erreur dans readMoviesByAgeController : " . $e->getMessage());
+        return false;
+    }
+}

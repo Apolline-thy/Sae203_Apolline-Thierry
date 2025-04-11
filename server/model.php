@@ -277,20 +277,33 @@ function addFavoris($movieId, $profileId) {
         // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         // Requête SQL pour ajouter un film à la base de données
-        $sql = "INSERT INTO Favoris (movie_id, profile_id) 
-                VALUES (:movie_id, :profile_id)";
+        $sql = "INSERT INTO Favoris (Movie_id, Profile_id) 
+                VALUES (:Movie_id, :Profile_id)";
         
         // Prépare la requête SQL
         $stmt = $cnx->prepare($sql);
         
         // Lie les paramètres aux valeurs
-        $stmt->bindParam(':movie_id', $movieId);
-        $stmt->bindParam(':profile_id', $profileId);
+        $stmt->bindParam(':Movie_id', $movieId);
+        $stmt->bindParam(':Profile_id', $profileId);
         // Exécute la requête SQL
         $stmt->execute();
         
         // Récupère le nombre de lignes affectées par la requête
         $res = $stmt->rowCount(); 
         return $res; // Retourne le nombre 
+}
+
+function getFavoris($profileId) {
+      $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+      $sql = "SELECT Movie.id, Movie.name, Movie.image, Category.name AS category
+              FROM Favoris
+              JOIN Movie ON Favoris.Movie_id = Movie.id
+              LEFT JOIN Category ON Movie.id_category = Category.id
+              WHERE Favoris.Profile_id = :Profile_id";
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':Profile_id', $profileId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 

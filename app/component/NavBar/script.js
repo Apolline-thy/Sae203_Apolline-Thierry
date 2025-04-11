@@ -6,6 +6,7 @@ let NavBar = {};
 NavBar.format = function (hAbout, profiles) {
   let html = template;
   html = html.replace("{{hAbout}}", hAbout);
+  html = html.replace("{{hFavoris}}", "C.handlerFavorisList()");
 
   let options = `<option value="" data-age="0" data-img="">Choisir un profil</option>`;
   for (let i = 0; i < profiles.length; i++) {

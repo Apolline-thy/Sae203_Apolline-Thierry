@@ -25,10 +25,28 @@
       // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
 
-      C.handlerAbout = function () {
-        alert(
-          "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
-        );
+      C.handlerAbout = function () {};
+
+      C.handlerFavorisList = async function () {
+        // Récupérer l'ID du profil actif
+        const profileSelect = document.querySelector("#profile-select");
+        const profileId = profileSelect ? profileSelect.value : null;
+
+        if (!profileId) {
+          alert("Veuillez sélectionner un profil pour voir les favoris.");
+          return;
+        }
+
+        // Récupérer les films favoris pour le profil actif
+        let favoris = await DataMovie.getFavoris(profileId);
+
+        if (!favoris || favoris.length === 0) {
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film ajouté aux favoris.</p>";
+        } else {
+          // Afficher les films favoris
+          V.renderMovie(favoris);
+        }
       };
 
       C.handlerDetail = async function (id) {
@@ -66,13 +84,13 @@
         C.getMovie();
       };
 
-      C.handlerFavoris = async function (id) {
-        let res = await DataMovie.addFavoris(id);
+      C.handlerFavoris = async function (id, profileId) {
+        const profileSelect = document.querySelector("#profile-select");
+        const profileId = profileSelect ? profileSelect.value : null;
+        let res = await DataMovie.addFavoris(id, profileId);
 
-        if (res && res.id) {
-          let movies = res;
-          let content = document.querySelector("#content");
-          content.innerHTML = MovieDetail.format(movies);
+        if (res) {
+          alert("Le film a été ajouté à vos favoris !");
         }
       };
 
@@ -141,9 +159,9 @@
         header.innerHTML = NavBar.format(hAbout, profiles);
       };
 
-      V.renderMovie = function (data) {
+      V.renderMovie = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = Movie.format(data);
+        content.innerHTML = movies.format(Movie.format);
       };
 
       V.renderMoviesByCategory = function (data) {

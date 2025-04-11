@@ -92,6 +92,10 @@ if ( isset($_REQUEST['todo']) ){
      $data = addFavorisController();
      break;
 
+     case 'getFavoris':
+     $data = getFavorisController();
+     break;
+
     default: // il y a un paramètre todo mais sa valeur n'est pas reconnue/supportée
       echo json_encode('[error] Unknown todo value');
       http_response_code(400); // 400 == "Bad request"
