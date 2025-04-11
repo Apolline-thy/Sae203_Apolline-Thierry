@@ -258,3 +258,39 @@ function modifyProfile($id, $name, $avatar, $date_naissance) {
         return $stmt->execute();
     }
 
+/**
+ * Ajoute un film à la base de données.
+ *
+ * @param int $n Le titre du film.
+ * @param int $c La catégorie du film (par exemple, Drame, Aventure, etc.).
+ * @param bool $t L'URL du trailer du film.
+ * 
+ * A SAVOIR: une requête SQL de type insert retourne le nombre de lignes affectées par la requête.
+ * Si l'insertion a réussi, le nombre de lignes affectées sera 1.
+ * Si l'insertion a échoué, le nombre de lignes affectées sera 0.
+ */
+   
+
+
+function addFavoris($movieId, $profileId) {
+      $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Requête SQL pour ajouter un film à la base de données
+        $sql = "INSERT INTO Favoris (movie_id, profile_id) 
+                VALUES (:movie_id, :profile_id)";
+        
+        // Prépare la requête SQL
+        $stmt = $cnx->prepare($sql);
+        
+        // Lie les paramètres aux valeurs
+        $stmt->bindParam(':movie_id', $movieId);
+        $stmt->bindParam(':profile_id', $profileId);
+        // Exécute la requête SQL
+        $stmt->execute();
+        
+        // Récupère le nombre de lignes affectées par la requête
+        $res = $stmt->rowCount(); 
+        return $res; // Retourne le nombre 
+}
+

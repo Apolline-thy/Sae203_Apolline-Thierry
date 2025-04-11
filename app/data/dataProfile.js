@@ -18,4 +18,12 @@ DataProfile.read = async function () {
   }
 };
 
+DataProfile.getFavoris = async function () {
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=getFavoris&id=${id}`
+  );
+  let data = await response.json();
+  return data;
+};
+
 export { DataProfile };

@@ -66,6 +66,16 @@
         C.getMovie();
       };
 
+      C.handlerFavoris = async function (id) {
+        let res = await DataMovie.addFavoris(id);
+
+        if (res && res.id) {
+          let movies = res;
+          let content = document.querySelector("#content");
+          content.innerHTML = MovieDetail.format(movies);
+        }
+      };
+
       C.start = async function () {
         let profiles = await DataProfile.read();
         if (!profiles || profiles.length === 0) {
@@ -123,27 +133,6 @@
           V.renderMoviesByCategory(data); // Tu peux maintenant l'utiliser dans tous les cas
         }
       };
-
-      // C.getMovie = async function (age) {
-      //   let movies = await DataMovie.request(age);
-      //   if (!Array.isArray(movies) || movies.length === 0) {
-      //     document.querySelector("#content").innerHTML =
-      //       "<p>Aucun film disponible pour votre tranche d'âge.</p>";
-      //     return;
-      //   }
-      //   V.renderMoviesByCategory(movies);
-      // };
-
-      // C.getCategories = async function () {
-      //   let age = C.profile ? C.profile.min_age : 0; // Récupère l'âge du profil ou 0 par défaut
-      //   let categories = await DataMovie.request(age);
-      //   if (!Array.isArray(categories) || categories.length === 0) {
-      //     document.querySelector("#categories").innerHTML =
-      //       "<p>Aucune catégorie disponible pour votre tranche d'âge.</p>";
-      //     return;
-      //   }
-      //   V.renderMoviesByCategory(categories); // Affiche les catégories
-      // };
 
       window.V = {};
 

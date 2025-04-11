@@ -54,4 +54,12 @@ DataMovie.requestMovieDetail = async function (id) {
   }
 };
 
+DataMovie.addFavoris = async function (id) {
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=addFavoris&id=${id}`
+  );
+  let data = await response.json();
+  return data;
+};
+
 export { DataMovie };
