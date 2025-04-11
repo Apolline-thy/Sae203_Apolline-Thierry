@@ -21,7 +21,6 @@ DataMovie.request = async function (age) {
     `${HOST_URL}/server/script.php?todo=readMoviesByAge&age=${age}`
   );
   let data = await answer.json();
-  console.log("Réponse brute du serveur : ", data); // Affiche la réponse du serveur
 
   return data;
 };
@@ -38,27 +37,24 @@ DataMovie.requestMovieCategory = async function () {
 
 DataMovie.requestMovieDetail = async function (id) {
   console.log(`Requête envoyée pour le détail du film : ${id}`);
-  try {
-    let answer = await fetch(
-      `${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`
-    );
-    if (!answer.ok) {
-      throw new Error(`Erreur HTTP : ${answer.status}`);
-    }
-    let data = await answer.json();
-    console.log("Détail du film reçu :", data); // Vérifiez ici
-    return data;
-  } catch (error) {
-    console.error("Erreur lors de la récupération du détail du film :", error);
-    return null;
+
+  let answer = await fetch(
+    `${HOST_URL}/server/script.php?todo=readMovieDetail&id=${id}`
+  );
+  if (!answer.ok) {
+    throw new Error(`Erreur HTTP : ${answer.status}`);
   }
+  let data = await answer.json();
+  return data;
 };
 
 DataMovie.addFavoris = async function (id, profileId) {
+  console.log(`Requête envoyée : movieId=${id}, profileId=${profileId}`);
   let response = await fetch(
-    `${HOST_URL}/server/script.php?todo=addFavoris&id=${id}&profileId=${profileId}`
+    `${HOST_URL}/server/script.php?todo=addFavoris&movieId=${id}&profileId=${profileId}`
   );
   let data = await response.json();
+  console.log("Réponse du serveur :", data);
   return data;
 };
 

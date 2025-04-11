@@ -1,6 +1,10 @@
 <div class="card" onclick="{{handler}}">
   <img class="card__img" src="../server/images/{{image}}" />
-  <button class="card__favoris" type="button" onclick="{{handlerFavoris}}">
+  <button
+    class="card__favoris"
+    type="button"
+    onclick="event.stopPropagation();{{handlerFavoris}}"
+  >
     Ajouter aux favoris
   </button>
   <h3 class="card__titre">{{name}}</h3>

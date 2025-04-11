@@ -131,16 +131,17 @@ function modifyProfileController() {
         }
     } 
 
-
-
 function addFavorisController() {
     $movieId = $_REQUEST['movieId'] ?? null;
     $profileId = $_REQUEST['profileId'] ?? null;
+
+    error_log("Paramètres reçus : movieId=$movieId, profileId=$profileId");
 
     if ($movieId && $profileId) {
         $result = addFavoris($movieId, $profileId); // Appelle la fonction dans model.php
         return $result;
     } else {
+        error_log("Paramètres manquants");
         return false; // Paramètres manquants
     }
 }

@@ -269,29 +269,22 @@ function modifyProfile($id, $name, $avatar, $date_naissance) {
  * Si l'insertion a réussi, le nombre de lignes affectées sera 1.
  * Si l'insertion a échoué, le nombre de lignes affectées sera 0.
  */
-   
-
 
 function addFavoris($movieId, $profileId) {
-      $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-        // $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Requête SQL pour ajouter un film à la base de données
+    try {
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
         $sql = "INSERT INTO Favoris (Movie_id, Profile_id) 
                 VALUES (:Movie_id, :Profile_id)";
-        
-        // Prépare la requête SQL
         $stmt = $cnx->prepare($sql);
-        
-        // Lie les paramètres aux valeurs
-        $stmt->bindParam(':Movie_id', $movieId, PDO::PARAM_INT);
-        $stmt->bindParam(':Profile_id', $profileId, PDO::PARAM_INT);
-        // Exécute la requête SQL
+        $stmt->bindParam(':Movie_id', $movieId);
+        $stmt->bindParam(':Profile_id', $profileId);
         $stmt->execute();
-        
-        // Récupère le nombre de lignes affectées par la requête
-        $res = $stmt->rowCount(); 
-        return $res; // Retourne le nombre 
+        error_log("Requête SQL exécutée avec succès : Movie_id=$movieId, Profile_id=$profileId");
+        return $stmt->rowCount();
+    } catch (Exception $e) {
+        error_log("Erreur SQL : " . $e->getMessage());
+        return 0;
+    }
 }
 
 function getFavoris($profileId) {
@@ -302,8 +295,8 @@ function getFavoris($profileId) {
               LEFT JOIN Category ON Movie.id_category = Category.id
               WHERE Favoris.Profile_id = :Profile_id";
         $stmt = $cnx->prepare($sql);
-        $stmt->bindParam(':Profile_id', $profileId, PDO::PARAM_INT);
+        $stmt->bindParam(':Profile_id', $profileId);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+};
 
