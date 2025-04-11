@@ -86,7 +86,13 @@
 
       C.handlerFavoris = async function (id, profileId) {
         const profileSelect = document.querySelector("#profile-select");
-        const profileId = profileSelect ? profileSelect.value : null;
+        if (!profileId) {
+          alert(
+            "Veuillez sélectionner un profil avant d'ajouter un film aux favoris."
+          );
+          return;
+        }
+
         let res = await DataMovie.addFavoris(id, profileId);
 
         if (res) {
@@ -161,7 +167,7 @@
 
       V.renderMovie = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = movies.format(Movie.format);
+        content.innerHTML = movies.format(Movie.format).join("");
       };
 
       V.renderMoviesByCategory = function (data) {

@@ -132,20 +132,22 @@ function modifyProfileController() {
     } 
 
 
- function addFavorisController() {
-    try {
-        $movies = addFavoris($movieId, $profileId); // Fonction dans model.php
-        return $movies;
-    } catch (Exception $e) {
-        error_log("Erreur dans readMoviesByAgeController : " . $e->getMessage());
-        return false;
+
+function addFavorisController() {
+    $movieId = $_REQUEST['movieId'] ?? null;
+    $profileId = $_REQUEST['profileId'] ?? null;
+
+    if ($movieId && $profileId) {
+        $result = addFavoris($movieId, $profileId); // Appelle la fonction dans model.php
+        return $result;
+    } else {
+        return false; // Paramètres manquants
     }
 }
 
-
  function getFavorisController() {
     try {
-        $movies = getFavoris($profileId); // Fonction dans model.php
+        $movies = getFavoris($movieId, $profileId); // Fonction dans model.php
         return $movies;
     } catch (Exception $e) {
         error_log("Erreur dans readMoviesByAgeController : " . $e->getMessage());

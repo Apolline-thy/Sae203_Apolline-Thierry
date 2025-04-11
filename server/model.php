@@ -284,8 +284,8 @@ function addFavoris($movieId, $profileId) {
         $stmt = $cnx->prepare($sql);
         
         // Lie les paramètres aux valeurs
-        $stmt->bindParam(':Movie_id', $movieId);
-        $stmt->bindParam(':Profile_id', $profileId);
+        $stmt->bindParam(':Movie_id', $movieId, PDO::PARAM_INT);
+        $stmt->bindParam(':Profile_id', $profileId, PDO::PARAM_INT);
         // Exécute la requête SQL
         $stmt->execute();
         
