@@ -5,7 +5,22 @@
     type="button"
     onclick="event.stopPropagation();{{handlerFavoris}}"
   >
-    Ajouter aux favoris
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="heart-icon"
+      width="24"
+      height="24"
+    >
+      <path
+        d="M20.8 4.6c-1.5-1.5-4-1.5-5.5 0l-.8.8-.8-.8c-1.5-1.5-4-1.5-5.5 0-1.5 1.5-1.5 4 0 5.5l6.3 6.3 6.3-6.3c1.5-1.5 1.5-4 0-5.5z"
+      ></path>
+    </svg>
   </button>
   <h3 class="card__titre">{{name}}</h3>
 </div>
