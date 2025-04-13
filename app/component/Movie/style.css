@@ -18,6 +18,9 @@
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.card:hover {
+  transform: scale(1.1);
+}
 
 .card__img {
   width: 100%;
@@ -48,7 +51,7 @@
 
 .heart-icon {
   fill: none;
-  stroke: #ff00f7;
+  stroke: #ff0000;
   transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
