@@ -125,6 +125,15 @@
 
         if (res === 1) {
           alert("Le film a été supprimé de vos favoris !");
+
+          // Vérifier si la liste des favoris est vide
+          let favoris = await DataMovie.getFavoris(profileId);
+          if (!favoris || favoris.length === 0) {
+            alert("Votre liste de favoris est vide");
+          } else {
+            // Réafficher les favoris restants
+            V.renderMovie(favoris);
+          }
         } else {
           alert("Ce film n'est pas dans vos favoris");
         }
