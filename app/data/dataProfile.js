@@ -1,5 +1,11 @@
 // URL où se trouve le répertoire "server" sur mmi.unilim.fr
-let HOST_URL = "https://mmi.unilim.fr/~thierry18/SAE2.03/"; //"http://mmi.unilim.fr/~????"; // CHANGE THIS TO MATCH YOUR CONFIG
+let HOST_URL;
+
+if (window.location.hostname.includes("mmi.unilim.fr")) {
+  HOST_URL = "https://mmi.unilim.fr/~thierry18/SAE2.03/";
+} else {
+  HOST_URL = "http://thierry-sae203.mmi-limoges.fr/";
+}
 
 let DataProfile = {};
 
