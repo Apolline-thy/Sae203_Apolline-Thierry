@@ -9,6 +9,7 @@
 
   <body>
     <header id="header"></header>
+    <section id="featured-movies"></section>
 
     <section id="content"></section>
 
@@ -19,6 +20,7 @@
       import { MovieDetail } from "./component/MovieDetail/script.js";
       import { MovieCategory } from "./component/MovieCategory/script.js";
       import { DataProfile } from "./data/dataProfile.js";
+      import { Mis_en_avant } from "./component/Mis_en_avant/script.js";
 
       // Controleur
       // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
@@ -139,6 +141,17 @@
         }
       };
 
+      C.getFeaturedMovies = async function () {
+        let featuredMovies = await DataMovie.readMoviesRecommended();
+        let content = document.querySelector("#featured-movies");
+
+        if (!featuredMovies || featuredMovies.length === 0) {
+          content.innerHTML = "<p>Aucun film mis en avant pour le moment.</p>";
+        } else {
+          content.innerHTML = Mis_en_avant.format(featuredMovies);
+        }
+      };
+
       C.start = async function () {
         let profiles = await DataProfile.read();
         if (!profiles || profiles.length === 0) {
@@ -149,6 +162,7 @@
         }
         V.renderNavBar("C.handlerAbout()", profiles);
         C.getMovie();
+        C.getFeaturedMovies();
       };
 
       C.getMovie = async function () {

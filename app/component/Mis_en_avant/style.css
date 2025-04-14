@@ -1,0 +1,44 @@
+.cardsreco {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+  justify-content: center; /* Centre les cartes horizontalement */
+  gap: 1rem; /* Ajoute un espace entre les cartes */
+}
+
+.cardreco {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border: 0.5rem;
+  border-radius: 5%;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 24rem; /* Largeur fixe pour toutes les cartes */
+  height: 22rem; /* Hauteur fixe pour toutes les cartes */
+  overflow: hidden; /* Cache le contenu qui dépasse */
+}
+
+.cardreco__img {
+  width: 50%; /* L'image prend toute la largeur de la carte */
+  height: 80%; /* Hauteur relative à la carte */
+  object-fit: cover; /* Ajuste l'image pour qu'elle remplisse l'espace sans déformation */
+  border-radius: 5% 5% 0 0; /* Arrondi uniquement en haut */
+}
+
+.cardreco__description {
+  flex-grow: 1; /* Permet à la description de s'étendre pour remplir l'espace restant */
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  overflow: hidden; /* Cache le texte qui dépasse */
+  text-overflow: ellipsis; /* Ajoute "..." si le texte est trop long */
+}
+
+.cardreco__titre {
+  font-family: var(--ff-sans);
+  margin-top: 12px;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  padding-bottom: 1.5rem;
+  align-items: center;
+}

@@ -318,3 +318,12 @@ function deleteFavoris($movieId, $profileId) {
     };
 
 
+function readMoviesRecommended() {
+    $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT id, name, image, description 
+            FROM Movie 
+            WHERE featured = TRUE";
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}

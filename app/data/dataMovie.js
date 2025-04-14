@@ -82,4 +82,16 @@ DataMovie.deleteFavoris = async function (id, profileId) {
   return data;
 };
 
+DataMovie.readMoviesRecommended = async function () {
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=readMoviesRecommended`
+  );
+
+  // Conversion de la réponse en JSON
+  let data = await response.json();
+
+  console.log("Réponse du serveur :", data);
+  return data;
+};
+
 export { DataMovie };
