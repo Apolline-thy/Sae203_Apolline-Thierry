@@ -52,6 +52,7 @@
       };
 
       C.handlerDetail = async function (id) {
+        document.querySelector("#featured-movies").style.display = "none";
         console.log(`ID du film sélectionné : ${id}`);
 
         let res = await DataMovie.requestMovieDetail(id);
