@@ -83,6 +83,7 @@
 
         C.getMovie();
       };
+
       C.handlerFavoris = async function (id) {
         console.log(`C.handlerFavoris appelé avec movieId=${id}`);
         const profileSelect = document.querySelector("#profile-select");
@@ -95,11 +96,37 @@
           return;
         }
 
+        // Vérifier si le film est déjà dans les favoris
+        let favoris = await DataMovie.getFavoris(profileId);
+        if (favoris.some((movie) => movie.id === id)) {
+          alert("Ce film a déjà été ajouté à vos favoris !");
+          return;
+        }
+
         let res = await DataMovie.addFavoris(id, profileId);
-        console.log("Réponse du serveur :", res);
 
         if (res === 1) {
           alert("Le film a été ajouté à vos favoris !");
+        }
+      };
+
+      C.handlerdeleteFavoris = async function (id) {
+        const profileSelect = document.querySelector("#profile-select");
+        const profileId = profileSelect ? profileSelect.value : null;
+
+        if (!profileId) {
+          alert(
+            "Veuillez sélectionner un profil avant de supprimer un film des favoris."
+          );
+          return;
+        }
+
+        let res = await DataMovie.deleteFavoris(id, profileId);
+
+        if (res === 1) {
+          alert("Le film a été supprimé de vos favoris !");
+        } else {
+          alert("Ce film n'est pas dans vos favoris");
         }
       };
 

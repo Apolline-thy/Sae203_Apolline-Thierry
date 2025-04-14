@@ -297,3 +297,24 @@ function getFavoris($profileId) {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 };
 
+function deleteFavoris($movieId, $profileId) {
+ 
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+
+        $sql = "DELETE FROM Favoris 
+                WHERE Movie_id = :Movie_id AND Profile_id = :Profile_id";
+
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':Movie_id', $movieId, PDO::PARAM_INT);
+        $stmt->bindParam(':Profile_id', $profileId, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        error_log("Requête SQL exécutée avec succès : Movie_id=$movieId, Profile_id=$profileId");
+
+        return $stmt->rowCount(); // Retourne le nombre de lignes supprimées
+    };
+
+

@@ -151,3 +151,12 @@ function getFavorisController() {
         $movies = getFavoris($profileId); // on passe uniquement le profileId
         return $movies;
 }
+
+function deleteFavorisController() {
+    $movieId = $_REQUEST['movieId'] ?? null;
+    $profileId = $_REQUEST['profileId'] ?? null;
+    if ($movieId && $profileId) {
+        $result = deleteFavoris($movieId, $profileId); // Appelle la fonction dans model.php
+        return $result;
+    }
+};

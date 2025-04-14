@@ -16,6 +16,10 @@ Movie.format = function (obj) {
     card = card.replace("{{image}}", c.image);
     card = card.replace("{{handler}}", `C.handlerDetail(${c.id})`);
     card = card.replace("{{handlerFavoris}}", `C.handlerFavoris(${c.id})`);
+    card = card.replace(
+      "{{handlerdeleteFavoris}}",
+      `C.handlerdeleteFavoris(${c.id})`
+    );
 
     cardsHTML += card;
   }

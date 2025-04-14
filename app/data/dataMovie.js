@@ -72,4 +72,14 @@ DataMovie.getFavoris = async function (profileId) {
   return data;
 };
 
+DataMovie.deleteFavoris = async function (id, profileId) {
+  console.log(`Requête envoyée : movieId=${id}, profileId=${profileId}`);
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=deleteFavoris&movieId=${id}&profileId=${profileId}`
+  );
+  let data = await response.json();
+  console.log("Réponse du serveur :", data);
+  return data;
+};
+
 export { DataMovie };
