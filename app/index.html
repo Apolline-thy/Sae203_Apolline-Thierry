@@ -30,7 +30,7 @@
       C.handlerAbout = function () {};
 
       C.handlerFavorisList = async function () {
-        // Récupérer l'ID du profil actif
+        document.querySelector("#featured-movies").style.display = "none";
         const profileSelect = document.querySelector("#profile-select");
         const profileId = profileSelect ? profileSelect.value : null;
 
@@ -41,6 +41,7 @@
 
         // Récupérer les films favoris pour le profil actif
         let favoris = await DataMovie.getFavoris(profileId);
+        console.log("Favoris récupérés :", favoris); // Ajoutez ce log
 
         if (!favoris || favoris.length === 0) {
           document.querySelector("#content").innerHTML =
