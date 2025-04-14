@@ -6,25 +6,23 @@ let templateCards = await templateFile2.text();
 
 let Movie = {};
 
-Movie.format = function (obj) {
+Movie.format = function (movies) {
   let html = template;
   let cardsHTML = "";
 
-  for (let c of obj) {
+  for (let movie of movies) {
     let card = templateCards;
-    card = card.replace("{{name}}", c.name);
-    card = card.replace("{{image}}", c.image);
-    card = card.replace("{{handler}}", `C.handlerDetail(${c.id})`);
-    card = card.replace("{{handlerFavoris}}", `C.handlerFavoris(${c.id})`);
+    card = card.replace("{{name}}", movie.name);
+    card = card.replace("{{image}}", movie.image);
+    card = card.replace("{{handler}}", `C.handlerDetail(${movie.id})`);
+    card = card.replace("{{handlerFavoris}}", `C.handlerFavoris(${movie.id})`);
     card = card.replace(
       "{{handlerdeleteFavoris}}",
-      `C.handlerdeleteFavoris(${c.id})`
+      `C.handlerdeleteFavoris(${movie.id})`
     );
-
     cardsHTML += card;
   }
 
-  // Remplacer le placeholder {{cards}} dans le template principal par les cartes générées
   html = html.replace("{{cards}}", cardsHTML);
   return html;
 };

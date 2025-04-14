@@ -69,6 +69,7 @@
       };
 
       C.handlerProfileChange = function () {
+        document.querySelector("#featured-movies").style.display = "none";
         const profileSelect = document.querySelector("#profile-select");
 
         const selectedOption =
@@ -244,7 +245,7 @@
 
       V.renderMovie = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = movies.map(Movie.format).join("");
+        content.innerHTML = Movie.format(movies); // une seule fois, avec un tableau complet
       };
 
       V.renderMoviesByCategory = function (data) {
