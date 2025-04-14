@@ -4,6 +4,7 @@
   padding-top: 2rem;
   grid-gap: 2rem;
   align-items: center;
+  padding: 1rem;
 }
 
 .card {
@@ -54,10 +55,27 @@
   stroke: #ff0000;
   transition: fill 0.3s ease, stroke 0.3s ease;
 }
-
+.card__deletefavoris {
+  position: absolute;
+  bottom: 3.7rem;
+  left: 0.2rem;
+  background: none;
+  border: none;
+}
 .card__favoris:hover .heart-icon {
   fill: #ff4d4d;
   stroke: #ff4d4d;
+}
+
+.trash-icon {
+  fill: none;
+  stroke: currentColor;
+  cursor: pointer;
+  transition: stroke 0.3s ease;
+}
+
+.trash-icon:hover {
+  stroke: red; /* Change la couleur au survol */
 }
 @media (max-width: 34rem) {
   .cards {
