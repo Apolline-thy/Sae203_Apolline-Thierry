@@ -330,9 +330,18 @@ function readMoviesRecommended() {
 
 function rechercherMovies($query) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "SELECT * FROM Movie WHERE name LIKE :query OR CAST(id_category AS CHAR) LIKE :query OR CAST(year AS CHAR) LIKE :query";
-    $query = htmlspecialchars(strip_tags($_REQUEST['query'] ?? ''));
+
+    // On prépare la recherche dans le nom du film, le nom de la catégorie et l'année
+    $sql = "SELECT m.* 
+            FROM Movie m
+            LEFT JOIN Category c ON m.id_category = c.id
+            WHERE m.name LIKE :query 
+               OR c.name LIKE :query 
+               OR CAST(m.year AS CHAR) LIKE :query";
+
+    $query = trim($_REQUEST['query'] ?? '');
     $stmt = $cnx->prepare($sql);
     $stmt->execute(['query' => "%$query%"]);
+
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }

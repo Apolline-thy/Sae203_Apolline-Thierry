@@ -154,6 +154,7 @@
 
       C.handlerRechercher = async function () {
         // Récupérer la valeur saisie dans la barre de recherche
+        document.querySelector("#featured-movies").style.display = "none";
         const searchInput = document
           .querySelector("input[name='name']")
           .value.trim();
@@ -164,7 +165,8 @@
         // Vérifier si des résultats ont été trouvés
         if (res && res.length > 0) {
           let content = document.querySelector("#content");
-          content.innerHTML = res.map(Movie.format).join(""); // Afficher les résultats sous forme de cartes
+
+          content.innerHTML = Movie.format(res);
         } else {
           // Afficher un message clair si aucun film n'est trouvé
           document.querySelector("#content").innerHTML =
@@ -240,7 +242,7 @@
 
       V.renderMovie = function (movies) {
         let content = document.querySelector("#content");
-        content.innerHTML = Movie.format(movies);
+        content.innerHTML = movies.map(Movie.format).join("");
       };
 
       V.renderMoviesByCategory = function (data) {
