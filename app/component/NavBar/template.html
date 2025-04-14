@@ -6,6 +6,14 @@
     </li>
     <li class="navbar__item" onclick="{{hFavoris}}">Favoris</li>
   </ul>
+
+  <input
+    required
+    type="text"
+    name="name"
+    placeholder="Rechercher un film"
+    onkeyup="{{handlerRechercher}}"
+  />
   <div class="nav__profile">
     <select id="profile-select" class="navbar__select" onchange="{{handler}}">
       {{profiles}}

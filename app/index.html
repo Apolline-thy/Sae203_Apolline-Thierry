@@ -152,6 +152,26 @@
         }
       };
 
+      C.handlerRechercher = async function () {
+        // Récupérer la valeur saisie dans la barre de recherche
+        const searchInput = document
+          .querySelector("input[name='name']")
+          .value.trim();
+
+        // Envoyer la requête au serveur avec le critère de recherche
+        let res = await DataMovie.rechercherMovies(searchInput);
+
+        // Vérifier si des résultats ont été trouvés
+        if (res && res.length > 0) {
+          let content = document.querySelector("#content");
+          content.innerHTML = res.map(Movie.format).join(""); // Afficher les résultats sous forme de cartes
+        } else {
+          // Afficher un message clair si aucun film n'est trouvé
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film ne correspond à votre recherche.</p>";
+        }
+      };
+
       C.start = async function () {
         let profiles = await DataProfile.read();
         if (!profiles || profiles.length === 0) {
