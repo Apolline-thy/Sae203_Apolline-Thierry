@@ -223,3 +223,27 @@ function rechercherMoviesAdminController() {
         return [];
     }
 }
+
+function modifyFeatureController() {
+    // Récupérer les paramètre
+    $id = intval($_REQUEST['id'] ?? 0);
+    $feature = $_REQUEST['feature'] ?? null;
+
+    // Validation des paramètres
+    if (empty($id) || $feature === null) {
+        error_log("Paramètres manquants ou invalides dans modifyFeatureController.");
+        http_response_code(400); // Bad Request
+        return ["success" => false, "message" => "Paramètres manquants ou invalides."];
+    }
+
+    // Appeler la fonction du modèle pour mettre à jour la mise en avant
+    $result = modifyFeature($feature, $id);
+
+    // Vérifier le résultat et retourner une réponse
+    if ($result) {
+        return ["success" => true, "message" => "Mise en avant mise à jour avec succès."];
+    } else {
+        error_log("Erreur lors de la mise à jour de la mise en avant pour l'ID : $id.");
+        return ["success" => false, "message" => "Erreur lors de la mise à jour de la mise en avant."];
+    }
+}

@@ -10,19 +10,23 @@ let ModifyFeature = {};
 ModifyFeature.format = function (results) {
   let html = template;
   let resultsHTML = "";
+  if (results && results.length > 0) {
+    for (let r of results) {
+      let resultsHTML = templateResults;
+      results = results.replace("{{name}}", r.name);
+      results = results.replace("{{category}}", r.category);
+      results = results.replace("{{year}}", r.year);
+      results = results.replace("{{featured}}", r.featured);
+      results = results.replace(
+        "{{handlerModifyFeature}}",
+        `C.handlerModifyFeature(${r.id})`
+      );
 
-  for (let r of results) {
-    let results = templateResults;
-    results = results.replace("{{name}}", r.name);
-    results = results.replace("{{category_name}}", r.category_name);
-    results = results.replace("{{year}}", r.year);
-    results = results.replace("{{featured}}", r.featured);
-    resultHTML = resultHTML.replace(
-      "{{handlerModifyFeature}}",
-      `C.handlerModifyFeature(${r.id})`
-    );
-
-    resultsHTML += results;
+      resultsHTML += results;
+    }
+  } else {
+    // Si aucun résultat, afficher un message par défaut
+    resultsHTML = "<p>Aucun résultat trouvé pour cette recherche.</p>";
   }
 
   html = html.replace(

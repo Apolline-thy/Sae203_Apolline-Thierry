@@ -51,31 +51,66 @@
       };
 
       C.handlerRechercherAdmin = async function () {
-        // Récupérer la valeur saisie dans la barre de recherche
-        const searchInput = document
-          .querySelector("input[name='name']")
-          .value.trim();
+        try {
+          // Récupérer la valeur saisie dans la barre de recherche
+          const searchInput = document
+            .querySelector("input[name='name']")
+            .value.trim();
 
-        // Envoyer la requête au serveur avec le critère de recherche
-        let res = await DataMovie.rechercherMovies(searchInput);
+          // Si le champ est vide, afficher un message et arrêter
+          if (!searchInput) {
+            document.querySelector("#ModifyFeature").innerHTML =
+              "<p>Veuillez saisir un critère de recherche.</p>";
+            return;
+          }
 
-        // Vérifier si des résultats ont été trouvés
-        if (res && res.length > 0) {
-          let content = document.querySelector("#content");
-          content.innerHTML = res.map(ModifyFeature.format).join("");
+          // Envoyer la requête au serveur avec le critère de recherche
+          let res = await DataMovie.rechercherMovies(searchInput);
 
-          content.innerHTML = ModifyFeature.format(res);
-        } else {
-          // Afficher un message clair si aucun film n'est trouvé
-          document.querySelector("#content").innerHTML =
-            "<p>Aucun film ne correspond à votre recherche.</p>";
+          // Vérifier si des résultats ont été trouvés
+          if (res && res.length > 0) {
+            let content = document.querySelector("#ModifyFeature");
+            content.innerHTML = ModifyFeature.format(res); // Afficher les résultats
+          } else {
+            document.querySelector("#ModifyFeature").innerHTML =
+              "<p>Aucun film ne correspond à votre recherche.</p>";
+          }
+        } catch (error) {
+          console.error("Erreur lors de la recherche :", error);
+          document.querySelector("#ModifyFeature").innerHTML =
+            "<p>Une erreur est survenue lors de la recherche.</p>";
         }
       };
+
       C.handlerModifyFeature = async function (id) {
-        let form = document.querySelector(".modifyProfile__form");
-        let fd = new FormData(form);
-        let res = await DataMovie.modify(fd);
-        V.renderLog(res);
+        try {
+          // Récupérer la valeur sélectionnée dans le champ <select>
+          const selectElement = document.querySelector(
+            `select[data-id="${id}"]`
+          );
+          const featuredValue = selectElement.value;
+
+          // Vérifier si une valeur a été sélectionnée
+          if (!featuredValue) {
+            alert("Veuillez sélectionner une option pour la mise en avant.");
+            return;
+          }
+
+          // Envoyer la requête au serveur pour mettre à jour la mise en avant
+          let res = await DataMovie.updateFeature(id, featuredValue);
+
+          // Vérifier si la mise à jour a réussi
+          if (res.success) {
+            alert("Le statut du film a été mis à jour avec succès.");
+            // Optionnel : Rafraîchir les résultats de la recherche
+            C.handlerRechercherAdmin();
+          } else {
+            alert("Une erreur est survenue lors de la mise à jour.");
+          }
+        } catch (error) {
+          console.error("Erreur lors de la mise à jour :", error);
+          alert("Une erreur est survenue lors de la mise à jour.");
+        }
       };
 
       C.start = async function () {

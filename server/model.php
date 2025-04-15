@@ -348,7 +348,7 @@ function rechercherMovies($query) {
 
 function rechercherMoviesAdmin($query) {
     $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
-    $sql = "SELECT m.*, c.name AS category_name, m.featured 
+    $sql = "SELECT m.*, c.name AS category, m.featured 
         FROM Movie m
         LEFT JOIN Category c ON m.id_category = c.id
         WHERE m.name LIKE :query 
@@ -359,4 +359,26 @@ function rechercherMoviesAdmin($query) {
     $stmt->execute(['query' => "%$query%"]);
 
     return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function modifyFeature($feature, $id) {
+    try {
+        $cnx = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, DBLOGIN, DBPWD, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+
+        $sql = "UPDATE Movie 
+                SET featured = :feature
+                WHERE id = :id";
+
+        $stmt = $cnx->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $feature = intval($feature);
+        $stmt->bindParam(':feature', $feature, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        error_log("Erreur lors de la mise à jour de la mise en avant : " . $e->getMessage());
+        return false;
+    }
 }
