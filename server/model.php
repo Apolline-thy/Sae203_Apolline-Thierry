@@ -345,3 +345,18 @@ function rechercherMovies($query) {
 
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
+
+function rechercherMoviesAdmin($query) {
+    $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+    $sql = "SELECT m.*, c.name AS category_name, m.featured 
+        FROM Movie m
+        LEFT JOIN Category c ON m.id_category = c.id
+        WHERE m.name LIKE :query 
+           OR c.name LIKE :query 
+           OR CAST(m.year AS CHAR) LIKE :query";
+    $query = trim($_REQUEST['query'] ?? '');
+    $stmt = $cnx->prepare($sql);
+    $stmt->execute(['query' => "%$query%"]);
+
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}

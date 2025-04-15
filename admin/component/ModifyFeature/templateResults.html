@@ -1,0 +1,19 @@
+<div class="movie-card">
+  <h3>{{name}}</h3>
+  <p>Catégorie : {{category_name}}</p>
+  <p>Année : {{year}}</p>
+  <p>Statut : {{featured}}</p>
+  <select required name="featured">
+    <option value="" disabled selected>Choisir une mise en avant</option>
+    <option value="1">Mettre en avant</option>
+    <option value="0">Ne pas mettre en avant</option>
+  </select>
+
+  <input
+    class="modifyFeature_button"
+    data-id="{{id}}"
+    onclick="{{handlerModifyFeature}}"
+    type="button"
+    value="Modifier"
+  />
+</div>

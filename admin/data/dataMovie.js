@@ -57,4 +57,20 @@ DataMovie.rechercherMovies = async function (searchQuery) {
   return data;
 };
 
+DataMovie.updateFeature = async function (id) {
+  let response = await fetch(
+    `${HOST_URL}/server/script.php?todo=updateFeature&id=${id})}`
+  );
+
+  console.log("Réponse brute du serveur :", response);
+
+  if (!response.ok) {
+    console.error("Erreur HTTP :", response.status);
+    return [];
+  }
+
+  let data = await response.json();
+  console.log("Données JSON :", data);
+  return data;
+};
 export { DataMovie };

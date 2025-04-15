@@ -14,6 +14,7 @@
     <!-- Formulaire pour ajouter un profil utilisateur -->
     <section id="ProfileForm"></section>
     <section id="ModifyProfile"></section>
+    <section id="ModifyFeature"></section>
 
     <script type="module">
       // Imports
@@ -23,6 +24,7 @@
       import { DataMovie } from "./data/dataMovie.js";
       import { DataProfile } from "./data/dataProfile.js";
       import { ModifyProfile } from "./component/ModifyProfile/script.js";
+      import { ModifyFeature } from "./component/ModifyFeature/script.js";
 
       // Contrôleur
       window.C = {};
@@ -48,12 +50,44 @@
         V.renderLog(res);
       };
 
+      C.handlerRechercherAdmin = async function () {
+        // Récupérer la valeur saisie dans la barre de recherche
+        const searchInput = document
+          .querySelector("input[name='name']")
+          .value.trim();
+
+        // Envoyer la requête au serveur avec le critère de recherche
+        let res = await DataMovie.rechercherMovies(searchInput);
+
+        // Vérifier si des résultats ont été trouvés
+        if (res && res.length > 0) {
+          let content = document.querySelector("#content");
+          content.innerHTML = res.map(ModifyFeature.format).join("");
+
+          content.innerHTML = ModifyFeature.format(res);
+        } else {
+          // Afficher un message clair si aucun film n'est trouvé
+          document.querySelector("#content").innerHTML =
+            "<p>Aucun film ne correspond à votre recherche.</p>";
+        }
+      };
+      C.handlerModifyFeature = async function (id) {
+        let form = document.querySelector(".modifyProfile__form");
+        let fd = new FormData(form);
+        let res = await DataMovie.modify(fd);
+        V.renderLog(res);
+      };
+
       C.start = async function () {
         V.renderLog("Démarrage de l'application");
         V.renderMovieForm("C.handlerAddMovie()");
         V.renderProfileForm("C.handlerAddProfile()");
         let profiles = await DataProfile.read();
         V.renderModifyProfile(profiles);
+        V.renderModifyFeature(
+          "C.handlerRechercherAdmin()",
+          "C.handlerModifyFeature()"
+        );
       };
 
       // Vue
@@ -77,6 +111,11 @@
       V.renderModifyProfile = function (data) {
         let content = document.querySelector("#ModifyProfile");
         content.innerHTML = ModifyProfile.format(data);
+      };
+
+      V.renderModifyFeature = function (data) {
+        let content = document.querySelector("#ModifyFeature");
+        content.innerHTML = ModifyFeature.format(data);
       };
 
       // Initialisation

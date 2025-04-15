@@ -1,8 +1,18 @@
-<input
-  class="navbar__rechercher"
-  required
-  type="text"
-  name="name"
-  placeholder="Rechercher un film"
-  onkeyup="{{handlerRechercher}}"
-/>
+<!-- Champ de recherche pour les films -->
+<div class="search-container">
+  <input
+    class="navbar__rechercher"
+    required
+    type="text"
+    name="name"
+    placeholder="Rechercher un film par titre"
+  />
+
+  <!-- Bouton pour lancer la recherche -->
+  <button onclick="{{handlerRechercherAdmin}}" class="search-button">
+    Rechercher
+  </button>
+</div>
+
+<!-- Conteneur pour afficher les résultats -->
+<div id="content" class="results-container">{{results}}</div>
