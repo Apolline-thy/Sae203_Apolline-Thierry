@@ -1,38 +1,38 @@
 .page {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center; /* centre verticalement */
-  height: 100vh; /* prend toute la hauteur de la fenêtre */
-  flex-direction: column; /* empile les boutons verticalement */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: sans-serif;
 }
 
-.page1__button {
-  margin: 1rem;
-  padding: 1rem;
-  width: 30rem;
-  border-radius: 2rem;
-  border: none;
-  font-weight: 600;
-  color: white;
-  background-color: rgb(44, 44, 95);
+.page__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
 }
+
+.page1__button,
 .page2__button {
-  margin: 1rem;
-  padding: 1rem;
-  width: 30rem;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  width: var(--button-width);
   border-radius: 2rem;
-  border: none;
   font-weight: 600;
+  font-size: 1rem;
   color: white;
-  background-color: rgb(44, 44, 95);
+  background-color: rgb(38, 38, 74);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s;
 }
-.page2__button {
-  margin: 1rem;
-  padding: 1rem;
-  width: 30rem;
-  border-radius: 2rem;
-  border: none;
-  font-weight: 600;
-  color: white;
-  background-color: rgb(44, 44, 95);
+
+.page1__button:hover,
+.page2__button:hover {
+  background-color: rgb(86, 86, 148);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
