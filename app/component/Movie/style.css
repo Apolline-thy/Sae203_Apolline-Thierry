@@ -50,7 +50,7 @@
   padding: 0.5rem;
   border-radius: 50%;
   background: none;
-  border: none;
+  border: var(--color-red);
   transition: background-color 0.3s ease;
 }
 
@@ -62,7 +62,7 @@
   border: none;
 }
 
-.card__favoris:hover .heart-icon {
+.card__favoris :hover {
   fill: var(--color-red);
   stroke: var(--color-red);
 }
