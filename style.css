@@ -1,0 +1,38 @@
+.page {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center; /* centre verticalement */
+  height: 100vh; /* prend toute la hauteur de la fenêtre */
+  flex-direction: column; /* empile les boutons verticalement */
+}
+
+.page1__button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 30rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(44, 44, 95);
+}
+.page2__button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 30rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(44, 44, 95);
+}
+.page2__button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 30rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(44, 44, 95);
+}

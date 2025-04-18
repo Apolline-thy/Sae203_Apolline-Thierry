@@ -1,0 +1,207 @@
+/* ====== Navbar (bloc principal) ====== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--color-blue);
+  color: white;
+  gap: 1rem;
+  position: sticky; /* Rendre la navbar sticky */
+  top: 0; /* Fixe la position au sommet */
+  z-index: 1000; /* Assure que la navbar est au-dessus du reste du contenu */
+  margin-top: 2rem;
+}
+
+/* === Logo === */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo-image {
+  height: 3rem;
+  width: auto;
+}
+
+/* === Liste de navigation === */
+.navbar__list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__item {
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar__item:hover {
+  color: var(--color-lightblue);
+}
+
+/* === Barre de recherche === */
+.navbar__search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__rechercher {
+  border-radius: 2rem;
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: var(--color-blue);
+  border: none;
+  color: white;
+  width: 12rem;
+}
+
+.navbar__search-icon {
+  position: absolute;
+  right: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: white;
+  pointer-events: none;
+}
+
+/* === Sélecteur === */
+.navbar__select {
+  background-color: var(--color-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 0.4rem;
+}
+
+/* ====== Profil utilisateur (hors BEM strict pour navbar) ====== */
+.nav__profile {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.profile-image {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+/* ====== Burger menu ====== */
+.burger {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  cursor: pointer;
+  display: none;
+}
+
+.burger svg {
+  stroke: white;
+}
+
+.burger__line {
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animation des lignes du burger */
+#menu-toggle:checked + .burger svg .burger__line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+#menu-toggle:checked + .burger svg .burger__line:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .burger svg .burger__line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 54em) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--color-blue);
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .burger {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+  }
+
+  .navbar__logo {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Cacher les éléments par défaut */
+  .navbar__list,
+  .navbar__search-wrapper,
+  .nav__profile {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  /* Affichage quand le burger est activé */
+  #menu-toggle:checked ~ .navbar__list,
+  #menu-toggle:checked ~ .navbar__search-wrapper,
+  #menu-toggle:checked ~ .nav__profile {
+    display: flex;
+  }
+
+  .navbar__search-wrapper,
+  .nav__profile {
+    padding: 0 1rem;
+  }
+
+  .navbar__rechercher,
+  .navbar__select {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color-blue);
+    color: white;
+    border: none;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    border-radius: 2rem;
+  }
+
+  .navbar__search-icon {
+    position: absolute;
+    right: 1.5rem;
+    z-index: 10;
+    top: 0.5rem;
+  }
+
+  .navbar__search-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .nav__profile {
+    align-items: center;
+  }
+
+  .profile-image {
+    margin-top: 0.5rem;
+    align-self: center;
+  }
+}

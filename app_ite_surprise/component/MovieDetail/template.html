@@ -1,0 +1,47 @@
+<div class="film">
+  <div class="film__content">
+    <div class="film__text">
+      <p class="film__item">CATEGORIE | {{category}}</p>
+      <h3 class="film__titre">{{name}}</h3>
+      <p class="film__item--year">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-calendar"
+        >
+          <rect x="3" y="4" width="18" height="17" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+        </svg>
+        {{year}}
+      </p>
+
+      <p class="film__description">{{description}}</p>
+      <button class="film__button">▶ Regarder</button>
+    </div>
+    <iframe
+      class="film__trailer"
+      width="60%"
+      height="400"
+      src="{{trailer}}"
+      title="Trailer du film"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+  <div class="separator"></div>
+  <div class="film__apropos">
+    <h4 class="film__titre">A propos</h4>
+    <p class="film__description--realisateur">Réalisation : {{director}}</p>
+    <p class="film__item--age">Restrictions d'age : {{min_age}}</p>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<nav class="navbar font-sans">
+  <!-- Checkbox cachée pour activer le menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" hidden />
+
+  <!-- Burger lié à la checkbox via le label -->
+  <label for="menu-toggle" class="burger" aria-label="Menu">
+    <svg viewBox="0 0 32 32" width="32" height="32">
+      <line class="burger__line" x1="2" y1="7" x2="30" y2="7" />
+      <line class="burger__line" x1="2" y1="16" x2="30" y2="16" />
+      <line class="burger__line" x1="2" y1="25" x2="30" y2="25" />
+    </svg>
+  </label>
+
+  <div class="navbar__logo">
+    <img
+      class="navbar__logo-image"
+      src="../server/images/logo.svg"
+      alt="logo"
+    />
+  </div>
+
+  <ul class="navbar__list">
+    <li class="navbar__item" onclick="{{hAbout}}">About</li>
+    <li class="navbar__item" onclick="window.location.href = 'index.html'">
+      Home
+    </li>
+    <li class="navbar__item" onclick="{{hFavoris}}">Favoris</li>
+  </ul>
+
+  <div class="navbar__search-wrapper">
+    <input
+      class="navbar__rechercher"
+      required
+      type="text"
+      name="name"
+      placeholder="Rechercher un film"
+      onkeyup="{{handlerRechercher}}"
+    />
+    <svg
+      class="navbar__search-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 7.5-7.5 7.5 7.5 0 0 1-7.5 7.5z"
+      />
+    </svg>
+  </div>
+
+  <div class="nav__profile">
+    <select id="profile-select" class="navbar__select" onchange="{{handler}}">
+      {{profiles}}
+    </select>
+    <img
+      id="profile-image"
+      src="{{image}}"
+      alt="Profile Image"
+      class="profile-image"
+    />
+  </div>
+</nav>

@@ -1,11 +1,5 @@
 // URL où se trouve le répertoire "server" sur mmi.unilim.fr
-let HOST_URL;
-
-if (window.location.hostname.includes("mmi.unilim.fr")) {
-  HOST_URL = "https://mmi.unilim.fr/~thierry18/SAE2.03/";
-} else {
-  HOST_URL = "http://thierry-sae203.mmi-limoges.fr/";
-}
+let HOST_URL = "..";
 
 let DataMovie = {};
 
@@ -47,11 +41,6 @@ DataMovie.rechercherMovies = async function (searchQuery) {
 
   console.log("Réponse brute du serveur :", response);
 
-  if (!response.ok) {
-    console.error("Erreur HTTP :", response.status);
-    return [];
-  }
-
   let data = await response.json();
   console.log("Données JSON :", data);
   return data;
@@ -61,12 +50,6 @@ DataMovie.updateFeature = async function (id, featuredValue) {
   let response = await fetch(
     `${HOST_URL}/server/script.php?todo=updateFeature&id=${id}&featured=${featuredValue}`
   );
-
-  if (!response.ok) {
-    console.error("Erreur HTTP :", response.status);
-    return { success: false };
-  }
-
   let data = await response.json();
   console.log("Données JSON :", data);
   return data;

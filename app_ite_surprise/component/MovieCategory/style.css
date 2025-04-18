@@ -1,0 +1,14 @@
+.category__title {
+  color: white;
+  font-family: var(--ff-sans);
+  padding-left: 5rem;
+}
+
+@media (max-width: 54em) {
+  .category__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+}

@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  /* Primitive Tokens */
+  --color-black: hsl(253, 69%, 8%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-gray-light: hsl(0, 13%, 90%);
+  --color-gray: hsl(0, 0%, 70.2%);
+  --color-gray-dark: hsl(0, 0%, 20%);
+  --color-blue: hsl(240, 41.2%, 13.3%);
+  --color-middleblue: hsl(246.1, 53.9%, 32.4%);
+  --color-lightblue: hsl(180, 100%, 24.3%);
+  --color-red: hsl(0, 100%, 50%);
+  --ff-sans: "Poppins", sans-serif;
+
+  /* Sementic Tokens */
+  --color-fg: var(--color-white);
+  --color-bg: var(--color-gray-dark);
+}

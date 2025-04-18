@@ -1,0 +1,113 @@
+/* ===== BODY ===== */
+body {
+  background-color: var(--color-blue);
+}
+
+/* ===== CAROUSEL (Bloc) ===== */
+.carousel-portrait {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding: 2rem 0;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+/* ===== CARDS (Élément du carousel) ===== */
+.cards-portrait {
+  display: flex;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 1rem;
+  padding: 0 2rem;
+  transition: transform 0.5s ease;
+}
+
+.cards-portrait::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== CARD (Bloc) ===== */
+.card {
+  position: relative;
+  flex: 0 0 18rem; /* 4 cartes par défaut */
+  scroll-snap-align: start;
+  transition: transform 0.5s ease, opacity 0.5s ease, z-index 0.5s ease;
+}
+
+/* ===== CARD Elements ===== */
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.card__favoris {
+  position: absolute;
+  bottom: 3rem;
+  right: 0.2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.card__deletefavoris {
+  position: absolute;
+  bottom: 3.7rem;
+  left: 0.2rem;
+  background: none;
+  border: none;
+}
+
+.card__favoris:hover .heart-icon {
+  fill: var(--color-red);
+  stroke: var(--color-red);
+}
+
+/* ===== SCROLL BUTTONS (Bloc) ===== */
+.scroll-btn-portrait {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+/* ===== SCROLL BUTTONS Modifiers ===== */
+.scroll-btn-portrait.left {
+  left: 0.5rem;
+}
+
+.scroll-btn-portrait.right {
+  right: 0.5rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 54em) {
+  .carousel-portrait {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .card {
+    flex: 0 0 13rem; /* ~2 cartes visibles */
+  }
+
+  .scroll-btn-portrait {
+    font-size: 1.5rem;
+    padding: 0.8rem;
+  }
+}

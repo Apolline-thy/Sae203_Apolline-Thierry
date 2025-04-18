@@ -1,5 +1,6 @@
 // URL où se trouve le répertoire "server" sur mmi.unilim.fr
 let HOST_URL = "..";
+
 let DataMovie = {};
 
 /**
@@ -92,12 +93,6 @@ DataMovie.rechercherMovies = async function (searchQuery) {
   );
 
   console.log("Réponse brute du serveur :", response);
-
-  if (!response.ok) {
-    console.error("Erreur HTTP :", response.status);
-    return [];
-  }
-
   let data = await response.json();
   console.log("Données JSON :", data);
   return data;

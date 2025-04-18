@@ -1,0 +1,112 @@
+body {
+  margin-right: 5rem;
+}
+
+.film {
+  display: flex;
+  width: 100%;
+  margin: 2rem;
+  padding-left: 1rem;
+  flex-direction: column;
+  text-align: left;
+  font-family: var(--ff-sans);
+  border-radius: 5%;
+  color: white;
+}
+
+.film__titre {
+  font-size: 2rem;
+}
+
+.film__trailer {
+  border-radius: 5%;
+  width: 100%;
+  height: 400px;
+}
+
+.film__content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  text-align: left;
+  justify-content: flex-start;
+  padding-top: 5rem;
+  column-gap: 5rem;
+}
+
+.film__text {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  order: 1;
+}
+
+.film__item--age {
+  color: white;
+}
+
+.film__item--year {
+  color: var(--color-gray-light);
+}
+
+.film__button {
+  margin: 1rem;
+  padding: 1rem;
+  width: 30rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: 600;
+  color: var(--color-middleblue);
+}
+
+.film__button :hover {
+  background-color: var(--color-gray);
+}
+
+.film__apropos {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  order: 3;
+}
+
+.separator {
+  display: none;
+  margin: 20px 0;
+  height: 1px;
+  border: 0;
+  background-color: white;
+}
+.film__item--year svg {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 34rem) {
+  .film__content {
+    flex-direction: column; /* Empile tout en colonne sur mobile */
+  }
+
+  .film__text {
+    max-width: 25rem;
+  }
+
+  .film__trailer {
+    width: 90%;
+    height: 10%;
+    margin-top: 2rem; /* Ajout d'un espace avant le trailer */
+  }
+
+  .film__apropos {
+    margin-top: 2rem; /* Ajout d'un espace entre le trailer et la section À propos */
+  }
+
+  .film__button {
+    width: 20rem;
+    align-self: center;
+  }
+
+  .separator {
+    display: block; /* Afficher la ligne sur mobile */
+  }
+}

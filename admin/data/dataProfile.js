@@ -1,11 +1,5 @@
 // URL où se trouve le répertoire "server" sur mmi.unilim.fr
-let HOST_URL;
-
-if (window.location.hostname.includes("mmi.unilim.fr")) {
-  HOST_URL = "https://mmi.unilim.fr/~thierry18/SAE2.03/";
-} else {
-  HOST_URL = "http://thierry-sae203.mmi-limoges.fr/";
-}
+let HOST_URL = "..";
 
 let DataProfile = {};
 
@@ -57,9 +51,6 @@ DataProfile.modify = async function (fdata) {
 
 DataProfile.read = async function () {
   let answer = await fetch(HOST_URL + "/server/script.php?todo=readProfiles");
-  if (!answer.ok) {
-    throw new Error(`Erreur HTTP : ${answer.status}`);
-  }
   let data = await answer.json();
   console.log("Profils récupérés :", data);
   return data;

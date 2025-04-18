@@ -49,9 +49,7 @@
 }
 
 .film__item--age {
-  border: solid black;
-  border-radius: 2%;
-  background-color: rgb(224, 220, 220);
+  background-color: white;
   align-items: center;
   text-align: center;
   width: 3rem;
@@ -59,10 +57,12 @@
   border: none;
 }
 
+/* Responsive */
 @media (max-width: 34rem) {
   .film__text {
     max-width: 25rem;
   }
+
   .film__trailer {
     width: 90%;
   }

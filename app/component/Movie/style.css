@@ -1,3 +1,4 @@
+/* === Bloc principal === */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -7,6 +8,7 @@
   padding: 1rem;
 }
 
+/* === Bloc secondaire === */
 .card {
   position: relative;
   width: 100%;
@@ -17,12 +19,14 @@
   border: 0.5rem;
   border-radius: 5%;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
 }
+
 .card:hover {
   transform: scale(1.1);
 }
 
+/* === Éléments === */
 .card__img {
   width: 100%;
   height: 25rem;
@@ -32,9 +36,9 @@
 
 .card__titre {
   font-family: var(--ff-sans);
-  margin-top: 12px;
+  margin-top: 0.75rem; /* 12px */
   font-size: 1rem;
-  color: rgb(0, 0, 0);
+  color: black;
   padding-bottom: 1.5rem;
   align-items: center;
 }
@@ -42,7 +46,7 @@
 .card__favoris {
   position: absolute;
   bottom: 3rem;
-  right: 0.2rem;
+  right: 0.2rem; /* 3.2px ≈ 0.2rem */
   padding: 0.5rem;
   border-radius: 50%;
   background: none;
@@ -50,11 +54,6 @@
   transition: background-color 0.3s ease;
 }
 
-.heart-icon {
-  fill: none;
-  stroke: #ff0000;
-  transition: fill 0.3s ease, stroke 0.3s ease;
-}
 .card__deletefavoris {
   position: absolute;
   bottom: 3.7rem;
@@ -62,9 +61,17 @@
   background: none;
   border: none;
 }
+
 .card__favoris:hover .heart-icon {
-  fill: #ff4d4d;
-  stroke: #ff4d4d;
+  fill: var(--color-red);
+  stroke: var(--color-red);
+}
+
+/* === Icônes === */
+.heart-icon {
+  fill: none;
+  stroke: var(--color-red);
+  transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
 .trash-icon {
@@ -75,8 +82,10 @@
 }
 
 .trash-icon:hover {
-  stroke: red; /* Change la couleur au survol */
+  stroke: var(--color-red);
 }
+
+/* === Media Queries === */
 @media (max-width: 34rem) {
   .cards {
     display: grid;
